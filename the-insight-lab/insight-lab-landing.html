@@ -1,11 +1,22 @@
 <!--
-  THE INSIGHT LAB — Landing Page Internationale Premium (FR)
+  THE INSIGHT LAB — Landing Page Internationale Premium (FR / EN)
   Bloc prêt à coller dans un élément "Code HTML" Systeme.io.
   Ne contient volontairement AUCUNE balise <html>, <head> ou <body>.
-  Voir le "GUIDE D'INTÉGRATION" livré séparément pour :
+
+  SÉLECTEUR DE LANGUE :
+  Le bouton FR/EN dans le header bascule tout le texte visible entre français
+  et anglais côté client (sans recharger la page), via le dictionnaire
+  I18N_DICT en bas du fichier. Le choix de langue est mémorisé pour la
+  session du visiteur (localStorage du navigateur, jamais transmis à Claude
+  ni à un tiers).
+  Pour un vrai SEO bilingue (/fr/ et /en/ avec hreflang, indexation séparée),
+  voir le "GUIDE D'INTÉGRATION" : cela nécessite deux pages Systeme.io
+  distinctes, ce que ce bloc unique ne peut pas remplacer.
+
+  Voir aussi le "GUIDE D'INTÉGRATION" pour :
   - le Title / Meta description à saisir dans les réglages SEO de la page Systeme.io
   - les images à uploader dans Systeme.io et les URLs à remplacer
-  - les intégrations externes (tracking, WhatsApp, formulaire) à configurer
+  - les intégrations externes (tracking, formulaire) à configurer
 -->
 
 <!-- ============ JSON-LD — Données structurées ============ -->
@@ -109,7 +120,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<div class="til-scope">
+<div class="til-scope" id="til-scope" lang="fr">
 <style>
 /* =====================================================
    THE INSIGHT LAB — Design System
@@ -252,9 +263,10 @@
 .til-nav-links a{ font-size:0.88rem; font-weight:500; color: var(--graphite); transition: color var(--dur-s) var(--ease); }
 .til-nav-links a:hover{ color: var(--gold); }
 .til-nav-right{ display:flex; align-items:center; gap:1rem; }
-.til-lang-switch{ display:flex; gap:.35rem; font-size:0.8rem; font-weight:600; color: var(--graphite); }
-.til-lang-switch button{ background:none; border:none; cursor:pointer; padding:.2rem .3rem; color:inherit; }
+.til-lang-switch{ display:flex; align-items:center; gap:.35rem; font-size:0.8rem; font-weight:600; color: var(--graphite); }
+.til-lang-switch button{ background:none; border:none; cursor:pointer; padding:.3rem .4rem; color:inherit; min-height:32px; border-radius:6px; }
 .til-lang-switch button[aria-current="true"]{ color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.til-lang-switch button:focus-visible{ outline: 2px solid var(--ink); outline-offset: 2px; }
 .til-scope .til-nav-cta{ display:none; }
 .til-burger{
   display:inline-flex; align-items:center; justify-content:center;
@@ -470,6 +482,7 @@
   padding: 1.3rem 0; background:none; border:none; text-align:left; cursor:pointer;
   font-family: var(--font-head); font-size:1.05rem; color: var(--ink);
 }
+.til-faq-q .til-faq-q-text{ flex:1; }
 .til-faq-q .til-plus{ flex:none; width:22px; height:22px; position:relative; }
 .til-faq-q .til-plus::before, .til-faq-q .til-plus::after{
   content:""; position:absolute; background: var(--gold); top:50%; left:50%; transform:translate(-50%,-50%);
@@ -505,7 +518,9 @@
 .til-footer h4{ color: var(--ivory); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:.8rem; }
 .til-footer ul{ display:flex; flex-direction:column; gap:.55rem; font-size:0.9rem; }
 .til-footer a:hover{ color: var(--gold-soft); }
-.til-footer-bottom{ border-top:1px solid rgba(250,249,246,0.14); padding-top:1.3rem; display:flex; flex-wrap:wrap; gap:.75rem; justify-content:space-between; font-size:0.78rem; color: rgba(250,249,246,0.5); }
+.til-footer-bottom{ border-top:1px solid rgba(250,249,246,0.14); padding-top:1.3rem; display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-content:space-between; font-size:0.78rem; color: rgba(250,249,246,0.5); }
+.til-powered{ font-weight:600; letter-spacing:0.03em; color: rgba(250,249,246,0.62); }
+.til-powered strong{ color: var(--gold-soft); font-family: var(--font-head); font-weight:600; letter-spacing:0.04em; }
 
 /* ============ STICKY MOBILE CTA ============ */
 .til-sticky-cta{
@@ -539,44 +554,44 @@
 .til-skip:focus{ left:0; top:0; }
 </style>
 
-<a class="til-skip" href="#til-main">Aller au contenu principal</a>
+<a class="til-skip" href="#til-main" data-i18n="skip">Aller au contenu principal</a>
 
 <!-- ============ HEADER ============ -->
 <header class="til-header" id="til-header">
   <div class="til-container til-nav">
     <a href="#til-main" class="til-logo">THE INSIGHT LAB</a>
 
-    <nav class="til-nav-links" aria-label="Navigation principale">
-      <a href="#expertises">Expertises</a>
-      <a href="#insight-flow">Insight Flow</a>
-      <a href="#formations">Formations</a>
-      <a href="#a-propos">À propos</a>
+    <nav class="til-nav-links" aria-label="Navigation principale" data-i18n-aria="nav.aria">
+      <a href="#expertises" data-i18n="nav.expertises">Expertises</a>
+      <a href="#insight-flow" data-i18n="nav.flow">Insight Flow</a>
+      <a href="#formations" data-i18n="nav.formations">Formations</a>
+      <a href="#a-propos" data-i18n="nav.about">À propos</a>
     </nav>
 
     <div class="til-nav-right">
-      <div class="til-lang-switch" role="group" aria-label="Choix de la langue">
-        <button type="button" aria-current="true" data-til-event="language_switch" data-lang="fr">FR</button>
+      <!-- Sélecteur de langue fonctionnel : bascule tout le texte visible FR/EN côté client -->
+      <div class="til-lang-switch" role="group" data-i18n-aria="nav.langAria" aria-label="Choix de la langue">
+        <button type="button" id="til-lang-fr" aria-current="true" data-til-event="language_switch" data-lang="fr">FR</button>
         <span aria-hidden="true">/</span>
-        <!-- [INTÉGRATION À CONFIGURER DANS SYSTEME.IO] : lier vers la page /en/ équivalente -->
-        <button type="button" aria-current="false" data-til-event="language_switch" data-lang="en">EN</button>
+        <button type="button" id="til-lang-en" aria-current="false" data-til-event="language_switch" data-lang="en">EN</button>
       </div>
       <a class="til-btn til-btn--gold til-nav-cta"
-         href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
-         target="_blank" rel="noopener" data-til-event="hero_cta_click">
+         href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.contact"
+         target="_blank" rel="noopener" data-til-event="hero_cta_click" data-i18n="nav.contact">
         Contact
       </a>
-      <button class="til-burger" id="til-burger" aria-expanded="false" aria-controls="til-mobile-menu" aria-label="Ouvrir le menu">
+      <button class="til-burger" id="til-burger" aria-expanded="false" aria-controls="til-mobile-menu" data-i18n-aria="nav.burgerAria" aria-label="Ouvrir le menu">
         <span></span>
       </button>
     </div>
   </div>
-  <nav id="til-mobile-menu" class="til-mobile-menu" aria-label="Navigation mobile">
-    <a href="#expertises">Expertises</a>
-    <a href="#insight-flow">Insight Flow</a>
-    <a href="#formations">Formations</a>
-    <a href="#a-propos">À propos</a>
-    <a href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
-       target="_blank" rel="noopener" data-til-event="hero_cta_click">Contacter l'équipe</a>
+  <nav id="til-mobile-menu" class="til-mobile-menu" aria-label="Navigation mobile" data-i18n-aria="nav.mobileAria">
+    <a href="#expertises" data-i18n="nav.expertises">Expertises</a>
+    <a href="#insight-flow" data-i18n="nav.flow">Insight Flow</a>
+    <a href="#formations" data-i18n="nav.formations">Formations</a>
+    <a href="#a-propos" data-i18n="nav.about">À propos</a>
+    <a href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.contact"
+       target="_blank" rel="noopener" data-til-event="hero_cta_click" data-i18n="nav.contactFull">Contacter l'équipe</a>
   </nav>
 </header>
 
@@ -606,17 +621,17 @@
     <div class="til-container til-hero-inner">
       <div class="til-hero-content">
         <span class="til-eyebrow">The Insight Lab</span>
-        <h1 class="til-h1">Transformez vos idées en résultats.</h1>
-        <p class="til-hero-sub">L'IA, la création et le digital au service de votre croissance.</p>
-        <p class="til-hero-signature">IDÉE <span aria-hidden="true">→</span> INSIGHT <span aria-hidden="true">→</span> RÉSULTAT</p>
+        <h1 class="til-h1" data-i18n="hero.h1">Transformez vos idées en résultats.</h1>
+        <p class="til-hero-sub" data-i18n="hero.sub">L'IA, la création et le digital au service de votre croissance.</p>
+        <p class="til-hero-signature" data-i18n="hero.signature">IDÉE <span aria-hidden="true">→</span> INSIGHT <span aria-hidden="true">→</span> RÉSULTAT</p>
 
         <div class="til-hero-actions">
           <a class="til-btn til-btn--gold"
-             href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
-             target="_blank" rel="noopener" data-til-event="hero_cta_click">
+             href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.contact"
+             target="_blank" rel="noopener" data-til-event="hero_cta_click" data-i18n="hero.cta">
             Contacter l'équipe InsightLab
           </a>
-          <span class="til-micro">Parlez-nous simplement de ce que vous voulez construire.</span>
+          <span class="til-micro" data-i18n="hero.micro">Parlez-nous simplement de ce que vous voulez construire.</span>
         </div>
       </div>
     </div>
@@ -626,43 +641,43 @@
   <section class="til-section" id="objectif">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Votre point de départ</span>
-        <h2 class="til-h2">Quel résultat voulez-vous construire ?</h2>
+        <span class="til-eyebrow" data-i18n="objective.eyebrow">Votre point de départ</span>
+        <h2 class="til-h2" data-i18n="objective.h2">Quel résultat voulez-vous construire ?</h2>
       </div>
 
       <div class="til-obj-grid">
         <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_create">
           <span class="til-obj-num">01</span>
-          <span class="til-obj-title">Je veux créer du contenu pro.</span>
-          <span class="til-obj-answer">Des idées aux visuels, vidéos et contenus.</span>
-          <a class="til-obj-cta" href="/create" data-til-event="create_click">Voir ce que vous pouvez créer</a>
+          <span class="til-obj-title" data-i18n="objective.create.title">Je veux créer du contenu pro.</span>
+          <span class="til-obj-answer" data-i18n="objective.create.answer">Des idées aux visuels, vidéos et contenus.</span>
+          <a class="til-obj-cta" href="/create" data-til-event="create_click" data-i18n="cta.seeCreate">Voir ce que vous pouvez créer</a>
         </button>
 
         <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_learn">
           <span class="til-obj-num">02</span>
-          <span class="til-obj-title">Je veux mieux utiliser l'IA.</span>
-          <span class="til-obj-answer">De l'outil à une véritable façon de travailler.</span>
-          <a class="til-obj-cta" href="#insight-flow">Voir comment ça fonctionne</a>
+          <span class="til-obj-title" data-i18n="objective.learn.title">Je veux mieux utiliser l'IA.</span>
+          <span class="til-obj-answer" data-i18n="objective.learn.answer">De l'outil à une véritable façon de travailler.</span>
+          <a class="til-obj-cta" href="#insight-flow" data-i18n="cta.seeHow">Voir comment ça fonctionne</a>
         </button>
 
         <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_develop">
           <span class="til-obj-num">03</span>
-          <span class="til-obj-title">Je veux développer ma présence.</span>
-          <span class="til-obj-answer">Une présence digitale cohérente, active et reconnaissable.</span>
-          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20ma%20pr%C3%A9sence%20digitale." target="_blank" rel="noopener">Parler à l'équipe</a>
+          <span class="til-obj-title" data-i18n="objective.develop.title">Je veux développer ma présence.</span>
+          <span class="til-obj-answer" data-i18n="objective.develop.answer">Une présence digitale cohérente, active et reconnaissable.</span>
+          <a class="til-obj-cta" href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.social" target="_blank" rel="noopener" data-i18n="cta.talk">Parler à l'équipe</a>
         </button>
 
         <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_convert">
           <span class="til-obj-num">04</span>
-          <span class="til-obj-title">Je veux transformer l'attention en opportunités.</span>
-          <span class="til-obj-answer">Du premier contact au parcours client.</span>
-          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20parcours%20client%20et%20de%20ma%20strat%C3%A9gie%20de%20conversion." target="_blank" rel="noopener">Parler à l'équipe</a>
+          <span class="til-obj-title" data-i18n="objective.convert.title">Je veux transformer l'attention en opportunités.</span>
+          <span class="til-obj-answer" data-i18n="objective.convert.answer">Du premier contact au parcours client.</span>
+          <a class="til-obj-cta" href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.funnel" target="_blank" rel="noopener" data-i18n="cta.talk">Parler à l'équipe</a>
         </button>
       </div>
 
       <div class="til-obj-help til-reveal">
-        <strong>Vous ne savez pas encore ?</strong>
-        <p>Expliquez-nous simplement votre objectif. Nous vous aiderons à trouver le bon point de départ.</p>
+        <strong data-i18n="objective.help.title">Vous ne savez pas encore ?</strong>
+        <p data-i18n="objective.help.text">Expliquez-nous simplement votre objectif. Nous vous aiderons à trouver le bon point de départ.</p>
       </div>
     </div>
   </section>
@@ -671,40 +686,40 @@
   <section class="til-surface" id="insight-flow" aria-labelledby="til-flow-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Notre méthode</span>
-        <h2 class="til-h2" id="til-flow-heading">L'IA devient puissante quand elle devient une façon de travailler.</h2>
-        <p class="til-lead">Insight Flow est la méthodologie propriétaire de The Insight Lab pour intégrer l'IA dans le travail réel — pas seulement dans un outil.</p>
+        <span class="til-eyebrow" data-i18n="flow.eyebrow">Notre méthode</span>
+        <h2 class="til-h2" id="til-flow-heading" data-i18n="flow.h2">L'IA devient puissante quand elle devient une façon de travailler.</h2>
+        <p class="til-lead" data-i18n="flow.lead">Insight Flow est la méthodologie propriétaire de The Insight Lab pour intégrer l'IA dans le travail réel — pas seulement dans un outil.</p>
       </div>
 
       <div class="til-flow" id="til-flow-list">
         <div class="til-flow-step" data-til-flow-step>
           <span class="til-flow-index">01</span>
-          <div><h3 class="til-flow-title">Comprendre</h3><p class="til-flow-desc">Clarifier avant de produire.</p></div>
+          <div><h3 class="til-flow-title" data-i18n="flow.step1.title">Comprendre</h3><p class="til-flow-desc" data-i18n="flow.step1.desc">Clarifier avant de produire.</p></div>
         </div>
         <div class="til-flow-step" data-til-flow-step>
           <span class="til-flow-index">02</span>
-          <div><h3 class="til-flow-title">Prompter</h3><p class="til-flow-desc">Donner à l'IA la bonne direction.</p></div>
+          <div><h3 class="til-flow-title" data-i18n="flow.step2.title">Prompter</h3><p class="til-flow-desc" data-i18n="flow.step2.desc">Donner à l'IA la bonne direction.</p></div>
         </div>
         <div class="til-flow-step" data-til-flow-step>
           <span class="til-flow-index">03</span>
-          <div><h3 class="til-flow-title">Créer</h3><p class="til-flow-desc">Transformer l'idée en matière concrète.</p></div>
+          <div><h3 class="til-flow-title" data-i18n="flow.step3.title">Créer</h3><p class="til-flow-desc" data-i18n="flow.step3.desc">Transformer l'idée en matière concrète.</p></div>
         </div>
         <div class="til-flow-step" data-til-flow-step>
           <span class="til-flow-index">04</span>
-          <div><h3 class="til-flow-title">Structurer</h3><p class="til-flow-desc">Transformer l'action en workflow.</p></div>
+          <div><h3 class="til-flow-title" data-i18n="flow.step4.title">Structurer</h3><p class="til-flow-desc" data-i18n="flow.step4.desc">Transformer l'action en workflow.</p></div>
         </div>
         <div class="til-flow-step" data-til-flow-step>
           <span class="til-flow-index">05</span>
-          <div><h3 class="til-flow-title">Appliquer</h3><p class="til-flow-desc">Intégrer l'IA dans le réel.</p></div>
+          <div><h3 class="til-flow-title" data-i18n="flow.step5.title">Appliquer</h3><p class="til-flow-desc" data-i18n="flow.step5.desc">Intégrer l'IA dans le réel.</p></div>
         </div>
         <div class="til-flow-step" data-til-flow-step>
           <span class="til-flow-index">06</span>
-          <div><h3 class="til-flow-title">Optimiser</h3><p class="til-flow-desc">Améliorer ce qui fonctionne.</p></div>
+          <div><h3 class="til-flow-title" data-i18n="flow.step6.title">Optimiser</h3><p class="til-flow-desc" data-i18n="flow.step6.desc">Améliorer ce qui fonctionne.</p></div>
         </div>
       </div>
 
       <div style="margin-top:2rem;">
-        <a class="til-btn til-btn--ghost" href="#expertises" data-til-event="flow_step_view">Voir comment ça fonctionne</a>
+        <a class="til-btn til-btn--ghost" href="#expertises" data-til-event="flow_step_view" data-i18n="cta.seeHow">Voir comment ça fonctionne</a>
       </div>
     </div>
   </section>
@@ -713,23 +728,23 @@
   <section aria-labelledby="til-impact-heading">
     <div class="til-container" style="display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:center;">
       <div class="til-section-head til-reveal" style="margin-bottom:0;">
-        <span class="til-eyebrow">Le chemin</span>
-        <h2 class="til-h2" id="til-impact-heading">Une idée n'est que le début.</h2>
-        <p class="til-lead">Nous construisons le chemin qui transforme l'une en l'autre.</p>
+        <span class="til-eyebrow" data-i18n="impact.eyebrow">Le chemin</span>
+        <h2 class="til-h2" id="til-impact-heading" data-i18n="impact.h2">Une idée n'est que le début.</h2>
+        <p class="til-lead" data-i18n="impact.lead">Nous construisons le chemin qui transforme l'une en l'autre.</p>
       </div>
 
       <div class="til-impact-chain til-reveal" id="til-impact-chain" aria-hidden="false">
-        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Idée</span></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label" data-i18n="impact.step1">Idée</span></div>
         <div class="til-impact-connector"></div>
-        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Insight</span></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label" data-i18n="impact.step2">Insight</span></div>
         <div class="til-impact-connector"></div>
-        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Création</span></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label" data-i18n="impact.step3">Création</span></div>
         <div class="til-impact-connector"></div>
-        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Diffusion</span></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label" data-i18n="impact.step4">Diffusion</span></div>
         <div class="til-impact-connector"></div>
-        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Audience</span></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label" data-i18n="impact.step5">Audience</span></div>
         <div class="til-impact-connector"></div>
-        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Conversion</span></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label" data-i18n="impact.step6">Conversion</span></div>
       </div>
     </div>
   </section>
@@ -738,37 +753,37 @@
   <section class="til-surface" id="expertises" aria-labelledby="til-exp-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Ce que nous construisons</span>
-        <h2 class="til-h2" id="til-exp-heading">Ce que nous pouvons construire avec vous.</h2>
+        <span class="til-eyebrow" data-i18n="expertises.eyebrow">Ce que nous construisons</span>
+        <h2 class="til-h2" id="til-exp-heading" data-i18n="expertises.h2">Ce que nous pouvons construire avec vous.</h2>
       </div>
 
       <div class="til-exp-grid">
         <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="creation">
-          <span class="til-exp-num">01 · CRÉATION</span>
-          <h3 class="til-exp-title">Donner une forme forte aux idées.</h3>
-          <p class="til-exp-desc">Visuels. Vidéos. Storytelling. Contenus créatifs avec l'IA.</p>
-          <a class="til-obj-cta" href="/create" data-til-event="create_click">Voir ce que vous pouvez créer</a>
+          <span class="til-exp-num" data-i18n="expertises.creation.num">01 · CRÉATION</span>
+          <h3 class="til-exp-title" data-i18n="expertises.creation.title">Donner une forme forte aux idées.</h3>
+          <p class="til-exp-desc" data-i18n="expertises.creation.desc">Visuels. Vidéos. Storytelling. Contenus créatifs avec l'IA.</p>
+          <a class="til-obj-cta" href="/create" data-til-event="create_click" data-i18n="cta.seeCreate">Voir ce que vous pouvez créer</a>
         </article>
 
         <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="formation">
-          <span class="til-exp-num">02 · IA & FORMATION</span>
-          <h3 class="til-exp-title">Faire de l'IA une compétence.</h3>
-          <p class="til-exp-desc">Prompting. Outils. Workflows. Accompagnement.</p>
-          <a class="til-obj-cta" href="#insight-flow">Voir comment ça fonctionne</a>
+          <span class="til-exp-num" data-i18n="expertises.formation.num">02 · IA & FORMATION</span>
+          <h3 class="til-exp-title" data-i18n="expertises.formation.title">Faire de l'IA une compétence.</h3>
+          <p class="til-exp-desc" data-i18n="expertises.formation.desc">Prompting. Outils. Workflows. Accompagnement.</p>
+          <a class="til-obj-cta" href="#insight-flow" data-i18n="cta.seeHow">Voir comment ça fonctionne</a>
         </article>
 
         <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="social">
-          <span class="til-exp-num">03 · SOCIAL MEDIA</span>
-          <h3 class="til-exp-title">Construire une présence qui compte.</h3>
-          <p class="til-exp-desc">Stratégie. Contenu. Animation. Communauté.</p>
-          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20ma%20pr%C3%A9sence%20digitale." target="_blank" rel="noopener">Parler à l'équipe</a>
+          <span class="til-exp-num" data-i18n="expertises.social.num">03 · SOCIAL MEDIA</span>
+          <h3 class="til-exp-title" data-i18n="expertises.social.title">Construire une présence qui compte.</h3>
+          <p class="til-exp-desc" data-i18n="expertises.social.desc">Stratégie. Contenu. Animation. Communauté.</p>
+          <a class="til-obj-cta" href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.social" target="_blank" rel="noopener" data-i18n="cta.talk">Parler à l'équipe</a>
         </article>
 
         <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="funnel">
-          <span class="til-exp-num">04 · FUNNEL & CONVERSION</span>
-          <h3 class="til-exp-title">Créer le chemin vers l'action.</h3>
-          <p class="til-exp-desc">Landing pages. Parcours clients. Nurturing. Automatisation. Conversion.</p>
-          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20parcours%20client%20et%20de%20ma%20strat%C3%A9gie%20de%20conversion." target="_blank" rel="noopener">Parler à l'équipe</a>
+          <span class="til-exp-num" data-i18n="expertises.funnel.num">04 · FUNNEL & CONVERSION</span>
+          <h3 class="til-exp-title" data-i18n="expertises.funnel.title">Créer le chemin vers l'action.</h3>
+          <p class="til-exp-desc" data-i18n="expertises.funnel.desc">Landing pages. Parcours clients. Nurturing. Automatisation. Conversion.</p>
+          <a class="til-obj-cta" href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.funnel" target="_blank" rel="noopener" data-i18n="cta.talk">Parler à l'équipe</a>
         </article>
       </div>
     </div>
@@ -778,28 +793,28 @@
   <section aria-labelledby="til-proof-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Preuve</span>
-        <h2 class="til-h2" id="til-proof-heading">Voyez ce que cela donne dans le réel.</h2>
+        <span class="til-eyebrow" data-i18n="proof.eyebrow">Preuve</span>
+        <h2 class="til-h2" id="til-proof-heading" data-i18n="proof.h2">Voyez ce que cela donne dans le réel.</h2>
       </div>
 
       <div class="til-proof-grid til-reveal" data-til-event="proof_view">
         <div class="til-proof-slot">
-          <span class="til-tag">Vidéo client</span>
-          <span>[VIDÉO CLIENT]</span>
+          <span class="til-tag" data-i18n="proof.video.tag">Vidéo client</span>
+          <span data-i18n="proof.video.label">[VIDÉO CLIENT]</span>
           <!-- Remplacer par un lecteur vidéo réel une fois le témoignage disponible. Ratio recommandé 9:16 ou 1:1. -->
         </div>
         <div class="til-proof-slot">
-          <span class="til-tag">Avant / après</span>
-          <span>[AVANT / APRÈS RÉEL]</span>
+          <span class="til-tag" data-i18n="proof.before.tag">Avant / après</span>
+          <span data-i18n="proof.before.label">[AVANT / APRÈS RÉEL]</span>
           <!-- IMAGE_BEFORE_AFTER — ratio 1:1, comparaison réelle uniquement -->
         </div>
         <div class="til-proof-slot">
-          <span class="til-tag">Témoignage audio</span>
-          <span>[TÉMOIGNAGE AUDIO]</span>
+          <span class="til-tag" data-i18n="proof.audio.tag">Témoignage audio</span>
+          <span data-i18n="proof.audio.label">[TÉMOIGNAGE AUDIO]</span>
         </div>
         <div class="til-proof-slot">
-          <span class="til-tag">Résultat mesurable</span>
-          <span>[RÉSULTAT MESURABLE]</span>
+          <span class="til-tag" data-i18n="proof.result.tag">Résultat mesurable</span>
+          <span data-i18n="proof.result.label">[RÉSULTAT MESURABLE]</span>
           <!-- Ex : "+X % de leads" — uniquement si le chiffre est réel et vérifiable -->
         </div>
       </div>
@@ -810,8 +825,8 @@
   <section class="til-ink" id="a-propos" aria-labelledby="til-about-heading" data-til-event="about_view">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Derrière Insight Lab</span>
-        <h2 class="til-h2" id="til-about-heading">Une vision. Une expérience. Une conviction.</h2>
+        <span class="til-eyebrow" data-i18n="about.eyebrow">Derrière Insight Lab</span>
+        <h2 class="til-h2" id="til-about-heading" data-i18n="about.h2">Une vision. Une expérience. Une conviction.</h2>
       </div>
 
       <div class="til-about til-reveal">
@@ -822,11 +837,11 @@
             Ratio recommandé : 4:5 / dimensions 1000x1250 (AVIF/WebP)
             ALT SEO recommandé : "Donatien Gérard Tatchou, fondateur de The Insight Lab"
           -->
-          <img src="IMAGE_FOUNDER_PORTRAIT.avif" alt="Donatien Gérard Tatchou, fondateur de The Insight Lab" loading="lazy" />
+          <img src="IMAGE_FOUNDER_PORTRAIT.avif" alt="Donatien Gérard Tatchou, fondateur de The Insight Lab" data-i18n-alt="about.imgAlt" loading="lazy" />
         </div>
         <div>
           <h3 class="til-h3" style="margin-bottom:.8rem;">Donatien Gérard Tatchou</h3>
-          <p class="til-lead" style="max-width:56ch;">
+          <p class="til-lead" style="max-width:56ch;" data-i18n="about.bio">
             Entrepreneur et investisseur, spécialiste du développement des équipes.
             Plus de 8 ans dans le marketing relationnel et l'entrepreneuriat, avec
             l'accompagnement de plus de 18 000 personnes dans leur évolution professionnelle.
@@ -835,13 +850,13 @@
           </p>
 
           <div class="til-about-stats">
-            <div><div class="til-stat-num">8+ ans</div><div class="til-stat-label">Marketing relationnel & entrepreneuriat</div></div>
-            <div><div class="til-stat-num">18 000+</div><div class="til-stat-label">Personnes accompagnées</div></div>
-            <div><div class="til-stat-num">6+ ans</div><div class="til-stat-label">D'intérêt pour l'IA</div></div>
-            <div><div class="til-stat-num">Aujourd'hui</div><div class="til-stat-label">L'IA appliquée au business</div></div>
+            <div><div class="til-stat-num" data-i18n="about.stat1.num">8+ ans</div><div class="til-stat-label" data-i18n="about.stat1.label">Marketing relationnel &amp; entrepreneuriat</div></div>
+            <div><div class="til-stat-num">18 000+</div><div class="til-stat-label" data-i18n="about.stat2.label">Personnes accompagnées</div></div>
+            <div><div class="til-stat-num" data-i18n="about.stat3.num">6+ ans</div><div class="til-stat-label" data-i18n="about.stat3.label">D'intérêt pour l'IA</div></div>
+            <div><div class="til-stat-num" data-i18n="about.stat4.num">Aujourd'hui</div><div class="til-stat-label" data-i18n="about.stat4.label">L'IA appliquée au business</div></div>
           </div>
 
-          <p class="til-about-question">« Comment rendre l'IA réellement utile au business ? »</p>
+          <p class="til-about-question" data-i18n="about.question">« Comment rendre l'IA réellement utile au business ? »</p>
         </div>
       </div>
     </div>
@@ -851,19 +866,19 @@
   <section class="til-ink" aria-labelledby="til-why-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Notre approche</span>
-        <h2 class="til-h2" id="til-why-heading">Pas simplement utiliser l'IA. L'intégrer intelligemment.</h2>
+        <span class="til-eyebrow" data-i18n="why.eyebrow">Notre approche</span>
+        <h2 class="til-h2" id="til-why-heading" data-i18n="why.h2">Pas simplement utiliser l'IA. L'intégrer intelligemment.</h2>
       </div>
 
       <div class="til-pillars til-reveal">
-        <div class="til-pillar"><div class="til-pillar-title">Stratégie</div><p class="til-pillar-text">Nous partons de votre objectif — pas de l'outil.</p></div>
-        <div class="til-pillar"><div class="til-pillar-title">Intelligence</div><p class="til-pillar-text">Nous cherchons où l'IA peut réellement créer de la valeur.</p></div>
-        <div class="til-pillar"><div class="til-pillar-title">Création</div><p class="til-pillar-text">Nous transformons les idées en expériences, contenus et actifs concrets.</p></div>
-        <div class="til-pillar"><div class="til-pillar-title">Exécution</div><p class="til-pillar-text">Nous construisons les systèmes qui permettent de passer de l'idée à l'action.</p></div>
-        <div class="til-pillar"><div class="til-pillar-title">Conversion</div><p class="til-pillar-text">Nous relions l'attention à une véritable opportunité business.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title" data-i18n="why.p1.title">Stratégie</div><p class="til-pillar-text" data-i18n="why.p1.text">Nous partons de votre objectif — pas de l'outil.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title" data-i18n="why.p2.title">Intelligence</div><p class="til-pillar-text" data-i18n="why.p2.text">Nous cherchons où l'IA peut réellement créer de la valeur.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title" data-i18n="why.p3.title">Création</div><p class="til-pillar-text" data-i18n="why.p3.text">Nous transformons les idées en expériences, contenus et actifs concrets.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title" data-i18n="why.p4.title">Exécution</div><p class="til-pillar-text" data-i18n="why.p4.text">Nous construisons les systèmes qui permettent de passer de l'idée à l'action.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title" data-i18n="why.p5.title">Conversion</div><p class="til-pillar-text" data-i18n="why.p5.text">Nous relions l'attention à une véritable opportunité business.</p></div>
       </div>
 
-      <p class="til-conclusion til-reveal">Une approche pensée pour relier les idées à leur exécution.</p>
+      <p class="til-conclusion til-reveal" data-i18n="why.conclusion">Une approche pensée pour relier les idées à leur exécution.</p>
     </div>
   </section>
 
@@ -871,36 +886,36 @@
   <section id="formations" aria-labelledby="til-tracks-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Formations</span>
-        <h2 class="til-h2" id="til-tracks-heading">Deux façons d'aller plus loin avec l'IA.</h2>
+        <span class="til-eyebrow" data-i18n="tracks.eyebrow">Formations</span>
+        <h2 class="til-h2" id="til-tracks-heading" data-i18n="tracks.h2">Deux façons d'aller plus loin avec l'IA.</h2>
       </div>
 
       <div class="til-track-grid">
         <article class="til-track-card til-reveal">
-          <h3 class="til-h3">Créez des visuels professionnels avec l'IA.</h3>
+          <h3 class="til-h3" data-i18n="tracks.create.title">Créez des visuels professionnels avec l'IA.</h3>
           <ul>
-            <li>Prompting</li>
-            <li>Images professionnelles</li>
-            <li>Identité visuelle</li>
-            <li>Direction créative</li>
+            <li data-i18n="tracks.create.li1">Prompting</li>
+            <li data-i18n="tracks.create.li2">Images professionnelles</li>
+            <li data-i18n="tracks.create.li3">Identité visuelle</li>
+            <li data-i18n="tracks.create.li4">Direction créative</li>
           </ul>
-          <a class="til-btn til-btn--ghost" href="/create" data-til-event="create_click">Voir ce que vous pouvez créer</a>
+          <a class="til-btn til-btn--ghost" href="/create" data-til-event="create_click" data-i18n="cta.seeCreate">Voir ce que vous pouvez créer</a>
         </article>
 
         <article class="til-track-card til-track--dark til-reveal">
-          <h3 class="til-h3">Transformez l'IA en moteur de création et de développement.</h3>
+          <h3 class="til-h3" data-i18n="tracks.magnet.title">Transformez l'IA en moteur de création et de développement.</h3>
           <ul>
-            <li>Vidéo</li>
-            <li>UGC</li>
-            <li>Publicités</li>
-            <li>Workflows</li>
-            <li>Business</li>
+            <li data-i18n="tracks.magnet.li1">Vidéo</li>
+            <li data-i18n="tracks.magnet.li2">UGC</li>
+            <li data-i18n="tracks.magnet.li3">Publicités</li>
+            <li data-i18n="tracks.magnet.li4">Workflows</li>
+            <li data-i18n="tracks.magnet.li5">Business</li>
           </ul>
-          <a class="til-btn til-btn--gold" href="/ai-business-magnet" data-til-event="magnet_click">Voir comment l'IA peut travailler pour vous</a>
+          <a class="til-btn til-btn--gold" href="/ai-business-magnet" data-til-event="magnet_click" data-i18n="cta.seeMagnet">Voir comment l'IA peut travailler pour vous</a>
         </article>
       </div>
 
-      <p class="til-track-note til-reveal">Deux parcours. Deux objectifs. Une même vision : rendre l'IA utile.</p>
+      <p class="til-track-note til-reveal" data-i18n="tracks.note">Deux parcours. Deux objectifs. Une même vision : rendre l'IA utile.</p>
     </div>
   </section>
 
@@ -908,17 +923,17 @@
   <section class="til-surface" aria-labelledby="til-who-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Pour qui</span>
-        <h2 class="til-h2" id="til-who-heading">Pour ceux qui veulent aller plus loin.</h2>
+        <span class="til-eyebrow" data-i18n="who.eyebrow">Pour qui</span>
+        <h2 class="til-h2" id="til-who-heading" data-i18n="who.h2">Pour ceux qui veulent aller plus loin.</h2>
       </div>
 
       <div class="til-who-grid til-reveal">
-        <div class="til-who-card"><div class="til-who-title">Entrepreneurs</div><p class="til-who-text">Transformer une vision en activité.</p></div>
-        <div class="til-who-card"><div class="til-who-title">Entreprises</div><p class="til-who-text">Intégrer l'IA dans les méthodes de travail.</p></div>
-        <div class="til-who-card"><div class="til-who-title">Créateurs</div><p class="til-who-text">Produire plus sans perdre leur identité.</p></div>
-        <div class="til-who-card"><div class="til-who-title">E-commerçants</div><p class="til-who-text">Créer, communiquer et convertir.</p></div>
-        <div class="til-who-card"><div class="til-who-title">Professionnels</div><p class="til-who-text">Développer leurs compétences et leur présence.</p></div>
-        <div class="til-who-card"><div class="til-who-title">Équipes</div><p class="til-who-text">Apprendre à travailler avec l'IA.</p></div>
+        <div class="til-who-card"><div class="til-who-title" data-i18n="who.p1.title">Entrepreneurs</div><p class="til-who-text" data-i18n="who.p1.text">Transformer une vision en activité.</p></div>
+        <div class="til-who-card"><div class="til-who-title" data-i18n="who.p2.title">Entreprises</div><p class="til-who-text" data-i18n="who.p2.text">Intégrer l'IA dans les méthodes de travail.</p></div>
+        <div class="til-who-card"><div class="til-who-title" data-i18n="who.p3.title">Créateurs</div><p class="til-who-text" data-i18n="who.p3.text">Produire plus sans perdre leur identité.</p></div>
+        <div class="til-who-card"><div class="til-who-title" data-i18n="who.p4.title">E-commerçants</div><p class="til-who-text" data-i18n="who.p4.text">Créer, communiquer et convertir.</p></div>
+        <div class="til-who-card"><div class="til-who-title" data-i18n="who.p5.title">Professionnels</div><p class="til-who-text" data-i18n="who.p5.text">Développer leurs compétences et leur présence.</p></div>
+        <div class="til-who-card"><div class="til-who-title" data-i18n="who.p6.title">Équipes</div><p class="til-who-text" data-i18n="who.p6.text">Apprendre à travailler avec l'IA.</p></div>
       </div>
     </div>
   </section>
@@ -927,34 +942,34 @@
   <section aria-labelledby="til-faq-heading">
     <div class="til-container" style="max-width:820px;">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Questions</span>
-        <h2 class="til-h2" id="til-faq-heading">Vous avez encore une question ?</h2>
+        <span class="til-eyebrow" data-i18n="faq.eyebrow">Questions</span>
+        <h2 class="til-h2" id="til-faq-heading" data-i18n="faq.h2">Vous avez encore une question ?</h2>
       </div>
 
       <div class="til-reveal" id="til-faq-list">
         <div class="til-faq-item" data-til-faq>
-          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Que fait The Insight Lab ?<span class="til-plus" aria-hidden="true"></span></button>
-          <div class="til-faq-a"><p>Nous aidons entrepreneurs, entreprises, créateurs, e-commerçants, professionnels et équipes à transformer leurs idées en résultats grâce à la stratégie, l'IA, la création, le digital et la conversion.</p></div>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open"><span class="til-faq-q-text" data-i18n="faq.q1.q">Que fait The Insight Lab ?</span><span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p data-i18n="faq.q1.a">Nous aidons entrepreneurs, entreprises, créateurs, e-commerçants, professionnels et équipes à transformer leurs idées en résultats grâce à la stratégie, l'IA, la création, le digital et la conversion.</p></div>
         </div>
         <div class="til-faq-item" data-til-faq>
-          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Qu'est-ce qu'Insight Flow ?<span class="til-plus" aria-hidden="true"></span></button>
-          <div class="til-faq-a"><p>C'est notre méthodologie propriétaire pour intégrer l'IA dans le travail réel, en six étapes : comprendre, prompter, créer, structurer, appliquer, optimiser.</p></div>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open"><span class="til-faq-q-text" data-i18n="faq.q2.q">Qu'est-ce qu'Insight Flow ?</span><span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p data-i18n="faq.q2.a">C'est notre méthodologie propriétaire pour intégrer l'IA dans le travail réel, en six étapes : comprendre, prompter, créer, structurer, appliquer, optimiser.</p></div>
         </div>
         <div class="til-faq-item" data-til-faq>
-          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Faut-il déjà connaître l'IA ?<span class="til-plus" aria-hidden="true"></span></button>
-          <div class="til-faq-a"><p>Non. Nous partons de votre objectif et vous accompagnons étape par étape, que vous découvriez l'IA ou que vous cherchiez à structurer une pratique déjà en place.</p></div>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open"><span class="til-faq-q-text" data-i18n="faq.q3.q">Faut-il déjà connaître l'IA ?</span><span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p data-i18n="faq.q3.a">Non. Nous partons de votre objectif et vous accompagnons étape par étape, que vous découvriez l'IA ou que vous cherchiez à structurer une pratique déjà en place.</p></div>
         </div>
         <div class="til-faq-item" data-til-faq>
-          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Quelle différence entre CREATE et AI Business Magnet ?<span class="til-plus" aria-hidden="true"></span></button>
-          <div class="til-faq-a"><p>CREATE se concentre sur les visuels professionnels avec l'IA. AI Business Magnet va plus loin : vidéo, UGC, publicités, workflows et développement business. Ce sont deux parcours indépendants.</p></div>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open"><span class="til-faq-q-text" data-i18n="faq.q4.q">Quelle différence entre CREATE et AI Business Magnet ?</span><span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p data-i18n="faq.q4.a">CREATE se concentre sur les visuels professionnels avec l'IA. AI Business Magnet va plus loin : vidéo, UGC, publicités, workflows et développement business. Ce sont deux parcours indépendants.</p></div>
         </div>
         <div class="til-faq-item" data-til-faq>
-          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Pouvez-vous accompagner une entreprise ?<span class="til-plus" aria-hidden="true"></span></button>
-          <div class="til-faq-a"><p>Oui. Nous travaillons avec des entrepreneurs individuels comme avec des entreprises et des équipes qui souhaitent intégrer l'IA dans leurs méthodes de travail.</p></div>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open"><span class="til-faq-q-text" data-i18n="faq.q5.q">Pouvez-vous accompagner une entreprise ?</span><span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p data-i18n="faq.q5.a">Oui. Nous travaillons avec des entrepreneurs individuels comme avec des entreprises et des équipes qui souhaitent intégrer l'IA dans leurs méthodes de travail.</p></div>
         </div>
         <div class="til-faq-item" data-til-faq>
-          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Comment commencer ?<span class="til-plus" aria-hidden="true"></span></button>
-          <div class="til-faq-a"><p>En contactant l'équipe sur WhatsApp pour nous expliquer simplement votre objectif. Nous vous aidons à identifier le point de départ le plus adapté.</p></div>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open"><span class="til-faq-q-text" data-i18n="faq.q6.q">Comment commencer ?</span><span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p data-i18n="faq.q6.a">En contactant l'équipe sur WhatsApp pour nous expliquer simplement votre objectif. Nous vous aidons à identifier le point de départ le plus adapté.</p></div>
         </div>
       </div>
     </div>
@@ -964,18 +979,18 @@
   <section class="til-ink til-final" aria-labelledby="til-final-heading">
     <div class="til-container">
       <div class="til-section-head til-reveal">
-        <span class="til-eyebrow">Prochaine étape</span>
-        <h2 class="til-h2" id="til-final-heading">Une idée mérite d'aller quelque part.</h2>
-        <p class="til-lead" style="margin-inline:auto;">Expliquez-nous ce que vous voulez construire.</p>
+        <span class="til-eyebrow" data-i18n="final.eyebrow">Prochaine étape</span>
+        <h2 class="til-h2" id="til-final-heading" data-i18n="final.h2">Une idée mérite d'aller quelque part.</h2>
+        <p class="til-lead" style="margin-inline:auto;" data-i18n="final.lead">Expliquez-nous ce que vous voulez construire.</p>
       </div>
 
       <div class="til-final-actions til-reveal">
         <a class="til-btn til-btn--gold"
-           href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
-           target="_blank" rel="noopener" data-til-event="hero_cta_click">
+           href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.contact"
+           target="_blank" rel="noopener" data-til-event="hero_cta_click" data-i18n="hero.cta">
           Contacter l'équipe InsightLab
         </a>
-        <span class="til-micro">Bonjour Insight Lab, je souhaite discuter de mon projet.</span>
+        <span class="til-micro" data-i18n="msg.contact">Bonjour Insight Lab, je souhaite discuter de mon projet.</span>
       </div>
     </div>
   </section>
@@ -985,13 +1000,13 @@
     <div class="til-container">
       <div class="til-community til-reveal">
         <div class="til-community-text">
-          <span class="til-eyebrow">Communauté</span>
-          <h2 class="til-h3" id="til-community-heading" style="margin-top:.6rem;">Rejoindre la communauté Insight Lab</h2>
-          <p class="til-lead" style="margin-top:.5rem;">Échanger, apprendre et découvrir ce que l'IA rend possible.</p>
+          <span class="til-eyebrow" data-i18n="community.eyebrow">Communauté</span>
+          <h2 class="til-h3" id="til-community-heading" style="margin-top:.6rem;" data-i18n="community.h2">Rejoindre la communauté Insight Lab</h2>
+          <p class="til-lead" style="margin-top:.5rem;" data-i18n="community.lead">Échanger, apprendre et découvrir ce que l'IA rend possible.</p>
         </div>
         <a class="til-btn til-btn--ghost"
            href="https://chat.whatsapp.com/F1SOvYfFiM6LiJkUje5jfr?s=cl&p=a&mlu=4&ilr=4"
-           target="_blank" rel="noopener" data-til-event="community_click">
+           target="_blank" rel="noopener" data-til-event="community_click" data-i18n="community.cta">
           Rejoindre la communauté Insight Lab
         </a>
       </div>
@@ -1006,28 +1021,28 @@
     <div class="til-footer-grid">
       <div>
         <div class="til-footer-brand">THE INSIGHT LAB</div>
-        <p style="max-width:34ch;">Des idées à l'impact. L'IA, la création et le digital au service de votre croissance.</p>
+        <p style="max-width:34ch;" data-i18n="footer.tagline">Des idées à l'impact. L'IA, la création et le digital au service de votre croissance.</p>
       </div>
       <div>
-        <h4>Navigation</h4>
+        <h4 data-i18n="footer.navTitle">Navigation</h4>
         <ul>
-          <li><a href="#expertises">Expertises</a></li>
-          <li><a href="#insight-flow">Insight Flow</a></li>
-          <li><a href="#formations">Formations</a></li>
-          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#expertises" data-i18n="nav.expertises">Expertises</a></li>
+          <li><a href="#insight-flow" data-i18n="nav.flow">Insight Flow</a></li>
+          <li><a href="#formations" data-i18n="nav.formations">Formations</a></li>
+          <li><a href="#a-propos" data-i18n="nav.about">À propos</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h4 data-i18n="footer.contactTitle">Contact</h4>
         <ul>
-          <li><a href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet." target="_blank" rel="noopener">WhatsApp — Contacter l'équipe</a></li>
-          <li><a href="https://chat.whatsapp.com/F1SOvYfFiM6LiJkUje5jfr?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener">Communauté WhatsApp</a></li>
+          <li><a href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.contact" target="_blank" rel="noopener" data-i18n="footer.waLink">WhatsApp — Contacter l'équipe</a></li>
+          <li><a href="https://chat.whatsapp.com/F1SOvYfFiM6LiJkUje5jfr?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener" data-i18n="footer.communityLink">Communauté WhatsApp</a></li>
         </ul>
       </div>
     </div>
     <div class="til-footer-bottom">
-      <span>© <span id="til-year"></span> The Insight Lab. Tous droits réservés.</span>
-      <span>Des idées à l'impact.</span>
+      <span><span data-i18n="footer.copyright">© <span id="til-year"></span> The Insight Lab. Tous droits réservés.</span></span>
+      <span class="til-powered" data-i18n="footer.powered">Powered by <strong>THE INSIGHT LAB</strong></span>
     </div>
   </div>
 </footer>
@@ -1035,8 +1050,8 @@
 <!-- ============ STICKY MOBILE CTA ============ -->
 <div class="til-sticky-cta" id="til-sticky-cta">
   <a class="til-btn til-btn--gold"
-     href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
-     target="_blank" rel="noopener" data-til-event="hero_cta_click">
+     href="#" data-wa-base="https://wa.me/971556957882" data-wa-msg="msg.contact"
+     target="_blank" rel="noopener" data-til-event="hero_cta_click" data-i18n="hero.cta">
     Contacter l'équipe InsightLab
   </a>
 </div>
@@ -1045,7 +1060,268 @@
 (function(){
   "use strict";
   var root = document;
+  var scope = root.getElementById('til-scope');
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =========================================================
+     I18N — dictionnaire de traduction FR / EN (bascule client)
+     Chaque clé correspond à un attribut data-i18n / data-i18n-aria
+     porté par un élément du HTML ci-dessus.
+     ========================================================= */
+  var I18N = {
+    "skip": { fr: "Aller au contenu principal", en: "Skip to main content" },
+    "nav.aria": { fr: "Navigation principale", en: "Main navigation" },
+    "nav.langAria": { fr: "Choix de la langue", en: "Language selector" },
+    "nav.burgerAria": { fr: "Ouvrir le menu", en: "Open menu" },
+    "nav.mobileAria": { fr: "Navigation mobile", en: "Mobile navigation" },
+    "nav.expertises": { fr: "Expertises", en: "Expertise" },
+    "nav.flow": { fr: "Insight Flow", en: "Insight Flow" },
+    "nav.formations": { fr: "Formations", en: "Trainings" },
+    "nav.about": { fr: "À propos", en: "About" },
+    "nav.contact": { fr: "Contact", en: "Contact" },
+    "nav.contactFull": { fr: "Contacter l'équipe", en: "Contact the team" },
+
+    "hero.h1": { fr: "Transformez vos idées en résultats.", en: "Turn your ideas into results." },
+    "hero.sub": { fr: "L'IA, la création et le digital au service de votre croissance.", en: "AI, creativity and digital strategy working for your growth." },
+    "hero.signature": { fr: "IDÉE → INSIGHT → RÉSULTAT", en: "IDEA → INSIGHT → RESULT" },
+    "hero.cta": { fr: "Contacter l'équipe InsightLab", en: "Contact the InsightLab team" },
+    "hero.micro": { fr: "Parlez-nous simplement de ce que vous voulez construire.", en: "Just tell us what you want to build." },
+
+    "objective.eyebrow": { fr: "Votre point de départ", en: "Your starting point" },
+    "objective.h2": { fr: "Quel résultat voulez-vous construire ?", en: "What result do you want to build?" },
+    "objective.create.title": { fr: "Je veux créer du contenu pro.", en: "I want to create professional content." },
+    "objective.create.answer": { fr: "Des idées aux visuels, vidéos et contenus.", en: "From ideas to visuals, videos and content." },
+    "objective.learn.title": { fr: "Je veux mieux utiliser l'IA.", en: "I want to use AI better." },
+    "objective.learn.answer": { fr: "De l'outil à une véritable façon de travailler.", en: "From a tool to a real way of working." },
+    "objective.develop.title": { fr: "Je veux développer ma présence.", en: "I want to grow my presence." },
+    "objective.develop.answer": { fr: "Une présence digitale cohérente, active et reconnaissable.", en: "A consistent, active and recognisable digital presence." },
+    "objective.convert.title": { fr: "Je veux transformer l'attention en opportunités.", en: "I want to turn attention into opportunities." },
+    "objective.convert.answer": { fr: "Du premier contact au parcours client.", en: "From first contact to the full customer journey." },
+    "objective.help.title": { fr: "Vous ne savez pas encore ?", en: "Not sure yet?" },
+    "objective.help.text": { fr: "Expliquez-nous simplement votre objectif. Nous vous aiderons à trouver le bon point de départ.", en: "Just tell us your goal. We'll help you find the right starting point." },
+
+    "cta.seeCreate": { fr: "Voir ce que vous pouvez créer", en: "See what you can create" },
+    "cta.seeHow": { fr: "Voir comment ça fonctionne", en: "See how it works" },
+    "cta.seeMagnet": { fr: "Voir comment l'IA peut travailler pour vous", en: "See how AI can work for you" },
+    "cta.talk": { fr: "Parler à l'équipe", en: "Talk to the team" },
+
+    "flow.eyebrow": { fr: "Notre méthode", en: "Our method" },
+    "flow.h2": { fr: "L'IA devient puissante quand elle devient une façon de travailler.", en: "AI becomes powerful when it becomes a way of working." },
+    "flow.lead": { fr: "Insight Flow est la méthodologie propriétaire de The Insight Lab pour intégrer l'IA dans le travail réel — pas seulement dans un outil.", en: "Insight Flow is The Insight Lab's proprietary methodology for embedding AI into real work — not just into a tool." },
+    "flow.step1.title": { fr: "Comprendre", en: "Understand" },
+    "flow.step1.desc": { fr: "Clarifier avant de produire.", en: "Clarify before producing." },
+    "flow.step2.title": { fr: "Prompter", en: "Prompt" },
+    "flow.step2.desc": { fr: "Donner à l'IA la bonne direction.", en: "Give AI the right direction." },
+    "flow.step3.title": { fr: "Créer", en: "Create" },
+    "flow.step3.desc": { fr: "Transformer l'idée en matière concrète.", en: "Turn the idea into something tangible." },
+    "flow.step4.title": { fr: "Structurer", en: "Structure" },
+    "flow.step4.desc": { fr: "Transformer l'action en workflow.", en: "Turn action into a workflow." },
+    "flow.step5.title": { fr: "Appliquer", en: "Apply" },
+    "flow.step5.desc": { fr: "Intégrer l'IA dans le réel.", en: "Embed AI into the real world." },
+    "flow.step6.title": { fr: "Optimiser", en: "Optimise" },
+    "flow.step6.desc": { fr: "Améliorer ce qui fonctionne.", en: "Improve what works." },
+
+    "impact.eyebrow": { fr: "Le chemin", en: "The path" },
+    "impact.h2": { fr: "Une idée n'est que le début.", en: "An idea is only the beginning." },
+    "impact.lead": { fr: "Nous construisons le chemin qui transforme l'une en l'autre.", en: "We build the path that turns one into the other." },
+    "impact.step1": { fr: "Idée", en: "Idea" },
+    "impact.step2": { fr: "Insight", en: "Insight" },
+    "impact.step3": { fr: "Création", en: "Creation" },
+    "impact.step4": { fr: "Diffusion", en: "Distribution" },
+    "impact.step5": { fr: "Audience", en: "Audience" },
+    "impact.step6": { fr: "Conversion", en: "Conversion" },
+
+    "expertises.eyebrow": { fr: "Ce que nous construisons", en: "What we build" },
+    "expertises.h2": { fr: "Ce que nous pouvons construire avec vous.", en: "What we can build with you." },
+    "expertises.creation.num": { fr: "01 · CRÉATION", en: "01 · CREATIVE" },
+    "expertises.creation.title": { fr: "Donner une forme forte aux idées.", en: "Giving ideas a strong form." },
+    "expertises.creation.desc": { fr: "Visuels. Vidéos. Storytelling. Contenus créatifs avec l'IA.", en: "Visuals. Videos. Storytelling. Creative content made with AI." },
+    "expertises.formation.num": { fr: "02 · IA & FORMATION", en: "02 · AI & TRAINING" },
+    "expertises.formation.title": { fr: "Faire de l'IA une compétence.", en: "Turning AI into a skill." },
+    "expertises.formation.desc": { fr: "Prompting. Outils. Workflows. Accompagnement.", en: "Prompting. Tools. Workflows. Coaching." },
+    "expertises.social.num": { fr: "03 · SOCIAL MEDIA", en: "03 · SOCIAL MEDIA" },
+    "expertises.social.title": { fr: "Construire une présence qui compte.", en: "Building a presence that matters." },
+    "expertises.social.desc": { fr: "Stratégie. Contenu. Animation. Communauté.", en: "Strategy. Content. Community management." },
+    "expertises.funnel.num": { fr: "04 · FUNNEL & CONVERSION", en: "04 · FUNNEL & CONVERSION" },
+    "expertises.funnel.title": { fr: "Créer le chemin vers l'action.", en: "Creating the path to action." },
+    "expertises.funnel.desc": { fr: "Landing pages. Parcours clients. Nurturing. Automatisation. Conversion.", en: "Landing pages. Customer journeys. Nurturing. Automation. Conversion." },
+
+    "proof.eyebrow": { fr: "Preuve", en: "Proof" },
+    "proof.h2": { fr: "Voyez ce que cela donne dans le réel.", en: "See what it looks like in the real world." },
+    "proof.video.tag": { fr: "Vidéo client", en: "Client video" },
+    "proof.video.label": { fr: "[VIDÉO CLIENT]", en: "[CLIENT VIDEO]" },
+    "proof.before.tag": { fr: "Avant / après", en: "Before / after" },
+    "proof.before.label": { fr: "[AVANT / APRÈS RÉEL]", en: "[REAL BEFORE / AFTER]" },
+    "proof.audio.tag": { fr: "Témoignage audio", en: "Audio testimonial" },
+    "proof.audio.label": { fr: "[TÉMOIGNAGE AUDIO]", en: "[AUDIO TESTIMONIAL]" },
+    "proof.result.tag": { fr: "Résultat mesurable", en: "Measurable result" },
+    "proof.result.label": { fr: "[RÉSULTAT MESURABLE]", en: "[MEASURABLE RESULT]" },
+
+    "about.eyebrow": { fr: "Derrière Insight Lab", en: "Behind Insight Lab" },
+    "about.h2": { fr: "Une vision. Une expérience. Une conviction.", en: "A vision. An experience. A conviction." },
+    "about.imgAlt": { fr: "Donatien Gérard Tatchou, fondateur de The Insight Lab", en: "Donatien Gérard Tatchou, founder of The Insight Lab" },
+    "about.bio": { fr: "Entrepreneur et investisseur, spécialiste du développement des équipes. Plus de 8 ans dans le marketing relationnel et l'entrepreneuriat, avec l'accompagnement de plus de 18 000 personnes dans leur évolution professionnelle. Passionné par l'intelligence artificielle depuis plus de 6 ans, il concentre aujourd'hui son travail sur son application concrète au business.",
+      en: "Entrepreneur and investor, specialised in team development. Over 8 years in relationship marketing and entrepreneurship, having supported more than 18,000 people in their professional growth. Passionate about artificial intelligence for more than 6 years, he now focuses his work on applying it concretely to business." },
+    "about.stat1.num": { fr: "8+ ans", en: "8+ years" },
+    "about.stat1.label": { fr: "Marketing relationnel & entrepreneuriat", en: "Relationship marketing & entrepreneurship" },
+    "about.stat2.label": { fr: "Personnes accompagnées", en: "People coached" },
+    "about.stat3.num": { fr: "6+ ans", en: "6+ years" },
+    "about.stat3.label": { fr: "D'intérêt pour l'IA", en: "Focused on AI" },
+    "about.stat4.num": { fr: "Aujourd'hui", en: "Today" },
+    "about.stat4.label": { fr: "L'IA appliquée au business", en: "AI applied to business" },
+    "about.question": { fr: "« Comment rendre l'IA réellement utile au business ? »", en: "“How do we make AI truly useful for business?”" },
+
+    "why.eyebrow": { fr: "Notre approche", en: "Our approach" },
+    "why.h2": { fr: "Pas simplement utiliser l'IA. L'intégrer intelligemment.", en: "Not just using AI. Integrating it intelligently." },
+    "why.p1.title": { fr: "Stratégie", en: "Strategy" },
+    "why.p1.text": { fr: "Nous partons de votre objectif — pas de l'outil.", en: "We start from your goal — not from the tool." },
+    "why.p2.title": { fr: "Intelligence", en: "Intelligence" },
+    "why.p2.text": { fr: "Nous cherchons où l'IA peut réellement créer de la valeur.", en: "We look for where AI can genuinely create value." },
+    "why.p3.title": { fr: "Création", en: "Creation" },
+    "why.p3.text": { fr: "Nous transformons les idées en expériences, contenus et actifs concrets.", en: "We turn ideas into experiences, content and tangible assets." },
+    "why.p4.title": { fr: "Exécution", en: "Execution" },
+    "why.p4.text": { fr: "Nous construisons les systèmes qui permettent de passer de l'idée à l'action.", en: "We build the systems that turn ideas into action." },
+    "why.p5.title": { fr: "Conversion", en: "Conversion" },
+    "why.p5.text": { fr: "Nous relions l'attention à une véritable opportunité business.", en: "We connect attention to a genuine business opportunity." },
+    "why.conclusion": { fr: "Une approche pensée pour relier les idées à leur exécution.", en: "An approach designed to connect ideas to their execution." },
+
+    "tracks.eyebrow": { fr: "Formations", en: "Trainings" },
+    "tracks.h2": { fr: "Deux façons d'aller plus loin avec l'IA.", en: "Two ways to go further with AI." },
+    "tracks.create.title": { fr: "Créez des visuels professionnels avec l'IA.", en: "Create professional visuals with AI." },
+    "tracks.create.li1": { fr: "Prompting", en: "Prompting" },
+    "tracks.create.li2": { fr: "Images professionnelles", en: "Professional imagery" },
+    "tracks.create.li3": { fr: "Identité visuelle", en: "Visual identity" },
+    "tracks.create.li4": { fr: "Direction créative", en: "Creative direction" },
+    "tracks.magnet.title": { fr: "Transformez l'IA en moteur de création et de développement.", en: "Turn AI into an engine for creation and growth." },
+    "tracks.magnet.li1": { fr: "Vidéo", en: "Video" },
+    "tracks.magnet.li2": { fr: "UGC", en: "UGC" },
+    "tracks.magnet.li3": { fr: "Publicités", en: "Ads" },
+    "tracks.magnet.li4": { fr: "Workflows", en: "Workflows" },
+    "tracks.magnet.li5": { fr: "Business", en: "Business" },
+    "tracks.note": { fr: "Deux parcours. Deux objectifs. Une même vision : rendre l'IA utile.", en: "Two tracks. Two goals. One vision: making AI useful." },
+
+    "who.eyebrow": { fr: "Pour qui", en: "Who it's for" },
+    "who.h2": { fr: "Pour ceux qui veulent aller plus loin.", en: "For those who want to go further." },
+    "who.p1.title": { fr: "Entrepreneurs", en: "Entrepreneurs" },
+    "who.p1.text": { fr: "Transformer une vision en activité.", en: "Turning a vision into a business." },
+    "who.p2.title": { fr: "Entreprises", en: "Businesses" },
+    "who.p2.text": { fr: "Intégrer l'IA dans les méthodes de travail.", en: "Embedding AI into ways of working." },
+    "who.p3.title": { fr: "Créateurs", en: "Creators" },
+    "who.p3.text": { fr: "Produire plus sans perdre leur identité.", en: "Producing more without losing their identity." },
+    "who.p4.title": { fr: "E-commerçants", en: "E-commerce sellers" },
+    "who.p4.text": { fr: "Créer, communiquer et convertir.", en: "Creating, communicating and converting." },
+    "who.p5.title": { fr: "Professionnels", en: "Professionals" },
+    "who.p5.text": { fr: "Développer leurs compétences et leur présence.", en: "Growing their skills and their presence." },
+    "who.p6.title": { fr: "Équipes", en: "Teams" },
+    "who.p6.text": { fr: "Apprendre à travailler avec l'IA.", en: "Learning to work with AI." },
+
+    "faq.eyebrow": { fr: "Questions", en: "Questions" },
+    "faq.h2": { fr: "Vous avez encore une question ?", en: "Still have a question?" },
+    "faq.q1.q": { fr: "Que fait The Insight Lab ?", en: "What does The Insight Lab do?" },
+    "faq.q1.a": { fr: "Nous aidons entrepreneurs, entreprises, créateurs, e-commerçants, professionnels et équipes à transformer leurs idées en résultats grâce à la stratégie, l'IA, la création, le digital et la conversion.", en: "We help entrepreneurs, businesses, creators, e-commerce sellers, professionals and teams turn their ideas into results through strategy, AI, creation, digital and conversion." },
+    "faq.q2.q": { fr: "Qu'est-ce qu'Insight Flow ?", en: "What is Insight Flow?" },
+    "faq.q2.a": { fr: "C'est notre méthodologie propriétaire pour intégrer l'IA dans le travail réel, en six étapes : comprendre, prompter, créer, structurer, appliquer, optimiser.", en: "It's our proprietary methodology for embedding AI into real work, in six steps: understand, prompt, create, structure, apply, optimise." },
+    "faq.q3.q": { fr: "Faut-il déjà connaître l'IA ?", en: "Do I need to already know AI?" },
+    "faq.q3.a": { fr: "Non. Nous partons de votre objectif et vous accompagnons étape par étape, que vous découvriez l'IA ou que vous cherchiez à structurer une pratique déjà en place.", en: "No. We start from your goal and guide you step by step, whether you're discovering AI or looking to structure a practice you already have." },
+    "faq.q4.q": { fr: "Quelle différence entre CREATE et AI Business Magnet ?", en: "What's the difference between CREATE and AI Business Magnet?" },
+    "faq.q4.a": { fr: "CREATE se concentre sur les visuels professionnels avec l'IA. AI Business Magnet va plus loin : vidéo, UGC, publicités, workflows et développement business. Ce sont deux parcours indépendants.", en: "CREATE focuses on professional visuals made with AI. AI Business Magnet goes further: video, UGC, ads, workflows and business growth. They are two independent tracks." },
+    "faq.q5.q": { fr: "Pouvez-vous accompagner une entreprise ?", en: "Can you support a business?" },
+    "faq.q5.a": { fr: "Oui. Nous travaillons avec des entrepreneurs individuels comme avec des entreprises et des équipes qui souhaitent intégrer l'IA dans leurs méthodes de travail.", en: "Yes. We work with individual entrepreneurs as well as businesses and teams who want to embed AI into their ways of working." },
+    "faq.q6.q": { fr: "Comment commencer ?", en: "How do I get started?" },
+    "faq.q6.a": { fr: "En contactant l'équipe sur WhatsApp pour nous expliquer simplement votre objectif. Nous vous aidons à identifier le point de départ le plus adapté.", en: "By contacting the team on WhatsApp and simply telling us your goal. We'll help you identify the best starting point." },
+
+    "final.eyebrow": { fr: "Prochaine étape", en: "Next step" },
+    "final.h2": { fr: "Une idée mérite d'aller quelque part.", en: "An idea deserves to go somewhere." },
+    "final.lead": { fr: "Expliquez-nous ce que vous voulez construire.", en: "Tell us what you want to build." },
+
+    "community.eyebrow": { fr: "Communauté", en: "Community" },
+    "community.h2": { fr: "Rejoindre la communauté Insight Lab", en: "Join the Insight Lab community" },
+    "community.lead": { fr: "Échanger, apprendre et découvrir ce que l'IA rend possible.", en: "Connect, learn and discover what AI makes possible." },
+    "community.cta": { fr: "Rejoindre la communauté Insight Lab", en: "Join the Insight Lab community" },
+
+    "footer.tagline": { fr: "Des idées à l'impact. L'IA, la création et le digital au service de votre croissance.", en: "From ideas to impact. AI, creativity and digital strategy working for your growth." },
+    "footer.navTitle": { fr: "Navigation", en: "Navigation" },
+    "footer.contactTitle": { fr: "Contact", en: "Contact" },
+    "footer.waLink": { fr: "WhatsApp — Contacter l'équipe", en: "WhatsApp — Contact the team" },
+    "footer.communityLink": { fr: "Communauté WhatsApp", en: "WhatsApp community" },
+    "footer.copyright": { fr: "© <span id=\"til-year\"></span> The Insight Lab. Tous droits réservés.", en: "© <span id=\"til-year\"></span> The Insight Lab. All rights reserved." },
+    "footer.powered": { fr: "Powered by <strong>THE INSIGHT LAB</strong>", en: "Powered by <strong>THE INSIGHT LAB</strong>" },
+
+    "msg.contact": { fr: "Bonjour Insight Lab, je souhaite discuter de mon projet.", en: "Hello Insight Lab, I'd like to discuss my project." },
+    "msg.social": { fr: "Bonjour Insight Lab, je souhaite discuter de ma présence digitale.", en: "Hello Insight Lab, I'd like to discuss my digital presence." },
+    "msg.funnel": { fr: "Bonjour Insight Lab, je souhaite discuter de mon parcours client et de ma stratégie de conversion.", en: "Hello Insight Lab, I'd like to discuss my customer journey and conversion strategy." }
+  };
+
+  var STORAGE_KEY = 'til_lang';
+  var currentLang = 'fr';
+  try {
+    var saved = window.localStorage.getItem(STORAGE_KEY);
+    if (saved === 'fr' || saved === 'en') currentLang = saved;
+  } catch(e) {}
+
+  function applyLanguage(lang){
+    currentLang = lang;
+    if (scope) scope.setAttribute('lang', lang);
+
+    root.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var entry = I18N[key];
+      if (!entry) return;
+      var value = entry[lang] || entry.fr;
+      // Certains textes portent un <span id="til-year"> ou <strong> imbriqué : on utilise innerHTML pour ceux-là uniquement.
+      if (key === 'footer.copyright' || key === 'footer.powered'){
+        el.innerHTML = value;
+      } else if (key === 'hero.signature'){
+        el.innerHTML = value.split(' → ').join(' <span aria-hidden="true">→</span> ');
+      } else {
+        el.textContent = value;
+      }
+    });
+
+    root.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-aria');
+      var entry = I18N[key];
+      if (!entry) return;
+      el.setAttribute('aria-label', entry[lang] || entry.fr);
+    });
+
+    root.querySelectorAll('[data-i18n-alt]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-alt');
+      var entry = I18N[key];
+      if (!entry) return;
+      el.setAttribute('alt', entry[lang] || entry.fr);
+    });
+
+    // Liens WhatsApp : reconstruit le href avec le message dans la bonne langue
+    root.querySelectorAll('[data-wa-base]').forEach(function(el){
+      var base = el.getAttribute('data-wa-base');
+      var msgKey = el.getAttribute('data-wa-msg');
+      var entry = I18N[msgKey];
+      var msg = entry ? (entry[lang] || entry.fr) : '';
+      el.setAttribute('href', base + '?text=' + encodeURIComponent(msg));
+    });
+
+    var yearEl = root.getElementById('til-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    var frBtn = root.getElementById('til-lang-fr');
+    var enBtn = root.getElementById('til-lang-en');
+    if (frBtn) frBtn.setAttribute('aria-current', lang === 'fr' ? 'true' : 'false');
+    if (enBtn) enBtn.setAttribute('aria-current', lang === 'en' ? 'true' : 'false');
+
+    try { window.localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
+  }
+
+  root.querySelectorAll('.til-lang-switch [data-lang]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var lang = btn.getAttribute('data-lang');
+      if (lang === currentLang) return;
+      applyLanguage(lang);
+      trackEvent('language_switch', { label: lang });
+    });
+  });
+
+  applyLanguage(currentLang);
 
   /* ---------- Tracking (CRO events) ----------
      [INTÉGRATION À CONFIGURER DANS SYSTEME.IO] :
@@ -1141,10 +1417,6 @@
     }, { threshold: 0.1 });
     stickyIo.observe(finalCta);
   }
-
-  /* ---------- Footer year ---------- */
-  var yearEl = root.getElementById('til-year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 </script>
 </div>
