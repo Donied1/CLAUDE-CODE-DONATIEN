@@ -1,0 +1,1150 @@
+<!--
+  THE INSIGHT LAB — Landing Page Internationale Premium (FR)
+  Bloc prêt à coller dans un élément "Code HTML" Systeme.io.
+  Ne contient volontairement AUCUNE balise <html>, <head> ou <body>.
+  Voir le "GUIDE D'INTÉGRATION" livré séparément pour :
+  - le Title / Meta description à saisir dans les réglages SEO de la page Systeme.io
+  - les images à uploader dans Systeme.io et les URLs à remplacer
+  - les intégrations externes (tracking, WhatsApp, formulaire) à configurer
+-->
+
+<!-- ============ JSON-LD — Données structurées ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://theinsightlab.com/#organization",
+      "name": "The Insight Lab",
+      "url": "https://theinsightlab.com/",
+      "description": "The Insight Lab accompagne entrepreneurs et entreprises avec l'IA, la création de contenu, le digital, le Social Media et la conversion.",
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://theinsightlab.com/#website",
+      "url": "https://theinsightlab.com/",
+      "name": "The Insight Lab",
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://theinsightlab.com/#webpage",
+      "url": "https://theinsightlab.com/",
+      "name": "The Insight Lab | IA, Création, Digital & Conversion",
+      "isPartOf": { "@id": "https://theinsightlab.com/#website" },
+      "inLanguage": "fr-FR",
+      "description": "The Insight Lab accompagne entrepreneurs et entreprises avec l'IA, la création de contenu, le digital, le Social Media et la conversion."
+    },
+    {
+      "@type": "Person",
+      "name": "Donatien Gérard Tatchou",
+      "jobTitle": "Fondateur, The Insight Lab",
+      "description": "Entrepreneur, investisseur et spécialiste du développement des équipes. Plus de 8 ans dans le marketing relationnel et l'entrepreneuriat, plus de 18 000 personnes accompagnées, intérêt pour l'IA depuis plus de 6 ans."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Que fait The Insight Lab ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Insight Lab aide entrepreneurs, entreprises, créateurs, e-commerçants, professionnels et équipes à transformer leurs idées en résultats grâce à la stratégie, l'intelligence artificielle, la création, le digital et la conversion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu'est-ce qu'Insight Flow ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Insight Flow est la méthodologie propriétaire de The Insight Lab pour intégrer l'IA au travail réel, en six étapes : comprendre, prompter, créer, structurer, appliquer, optimiser."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il déjà connaître l'IA pour commencer ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Insight Flow part de votre objectif et vous accompagne étape par étape, que vous découvriez l'IA ou que vous cherchiez à structurer une pratique déjà en place."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle différence entre CREATE et AI Business Magnet ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CREATE se concentre sur la création de visuels professionnels avec l'IA. AI Business Magnet va plus loin : vidéo, UGC, publicités, workflows et développement business. Ce sont deux parcours indépendants, à choisir selon votre objectif."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pouvez-vous accompagner une entreprise ou une équipe ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. The Insight Lab travaille avec des entrepreneurs individuels comme avec des entreprises et des équipes qui souhaitent intégrer l'IA dans leurs méthodes de travail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment commencer avec The Insight Lab ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En contactant l'équipe sur WhatsApp pour expliquer simplement votre objectif. L'équipe vous aide à identifier le point de départ le plus adapté."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!--
+  Polices : Fraunces (titres) + Inter (texte courant), chargées depuis Google Fonts.
+  Si Systeme.io filtre les balises <link> placées dans le corps, ajoutez ces deux lignes
+  dans les réglages "Head" / "Code personnalisé <head>" de la page.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="til-scope">
+<style>
+/* =====================================================
+   THE INSIGHT LAB — Design System
+   White × Gold × Transformation
+   ===================================================== */
+.til-scope{
+  --ivory:#FAF9F6;
+  --white:#FFFFFF;
+  --ink:#111111;
+  --graphite:#2A2A2A;
+  --gold:#C9A84C;
+  --gold-soft:#D8C27A;
+  --surface:#F1EEE7;
+  --line: rgba(17,17,17,0.10);
+  --line-soft: rgba(17,17,17,0.06);
+  --shadow-1: 0 1px 2px rgba(17,17,17,0.04), 0 8px 24px rgba(17,17,17,0.06);
+  --shadow-2: 0 4px 12px rgba(17,17,17,0.06), 0 24px 48px rgba(17,17,17,0.10);
+  --radius-s: 6px;
+  --radius-m: 14px;
+  --radius-l: 24px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --dur-s: 220ms;
+  --dur-m: 420ms;
+  --dur-l: 640ms;
+
+  --font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--ivory);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.55;
+}
+.til-scope *{ box-sizing: border-box; }
+.til-scope img{ max-width:100%; display:block; }
+.til-scope a{ color:inherit; text-decoration:none; }
+.til-scope ul{ list-style:none; margin:0; padding:0; }
+.til-scope button{ font-family:inherit; }
+
+.til-scope h1,
+.til-scope h2,
+.til-scope h3{
+  font-family: var(--font-head);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+.til-scope .til-h1{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); }
+.til-scope .til-h2{ font-size: clamp(1.7rem, 3.6vw, 2.7rem); }
+.til-scope .til-h3{ font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.til-scope .til-eyebrow{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.til-scope .til-eyebrow::before{
+  content:""; width:18px; height:1px; background: var(--gold);
+}
+.til-scope .til-lead{
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  color: var(--graphite);
+  max-width: 46ch;
+}
+.til-scope .til-container{
+  width:100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+.til-scope section{
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+.til-scope .til-section--tight{ padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+.til-scope .til-section-head{
+  display:flex; flex-direction:column; gap:1rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  max-width: 62ch;
+}
+.til-scope .til-surface{ background: var(--surface); }
+.til-scope .til-ink{ background: var(--ink); color: var(--ivory); }
+.til-scope .til-ink h2, .til-scope .til-ink h3{ color: var(--ivory); }
+.til-scope .til-ink .til-lead{ color: rgba(250,249,246,0.78); }
+
+/* Buttons */
+.til-scope .til-btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding: 0.95rem 1.6rem;
+  min-height: 48px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform var(--dur-s) var(--ease), box-shadow var(--dur-s) var(--ease), background var(--dur-s) var(--ease), border-color var(--dur-s) var(--ease);
+  white-space: normal;
+  text-align: center;
+}
+.til-scope .til-btn:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+.til-scope .til-btn--gold{
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: var(--ink);
+  box-shadow: var(--shadow-1);
+}
+.til-scope .til-btn--gold:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.til-scope .til-btn--ghost{
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.til-scope .til-btn--ghost:hover{ border-color: var(--gold); color: var(--ink); }
+.til-scope .til-ink .til-btn--ghost{ color: var(--ivory); border-color: rgba(250,249,246,0.28); }
+.til-scope .til-ink .til-btn--ghost:hover{ border-color: var(--gold-soft); }
+.til-scope .til-btn svg{ width:16px; height:16px; flex:none; }
+
+/* ============ HEADER / NAV ============ */
+.til-header{
+  position: sticky; top:0; z-index: 60;
+  background: rgba(250,249,246,0.86);
+  backdrop-filter: saturate(160%) blur(10px);
+  -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-s) var(--ease), background var(--dur-s) var(--ease);
+}
+.til-header.til-is-scrolled{ border-bottom-color: var(--line); }
+.til-nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-block: 1rem;
+}
+.til-logo{ font-family: var(--font-head); font-size:1.05rem; font-weight:600; letter-spacing:0.02em; }
+.til-nav-links{ display:none; align-items:center; gap:2rem; }
+.til-nav-links a{ font-size:0.88rem; font-weight:500; color: var(--graphite); transition: color var(--dur-s) var(--ease); }
+.til-nav-links a:hover{ color: var(--gold); }
+.til-nav-right{ display:flex; align-items:center; gap:1rem; }
+.til-lang-switch{ display:flex; gap:.35rem; font-size:0.8rem; font-weight:600; color: var(--graphite); }
+.til-lang-switch button{ background:none; border:none; cursor:pointer; padding:.2rem .3rem; color:inherit; }
+.til-lang-switch button[aria-current="true"]{ color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.til-scope .til-nav-cta{ display:none; }
+.til-burger{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:999px; border:1px solid var(--line);
+  background: transparent; cursor:pointer;
+}
+.til-burger span{ display:block; width:18px; height:1.5px; background: var(--ink); position:relative; }
+.til-burger span::before, .til-burger span::after{ content:""; position:absolute; left:0; width:18px; height:1.5px; background:var(--ink); transition: transform var(--dur-s) var(--ease); }
+.til-burger span::before{ top:-6px; } .til-burger span::after{ top:6px; }
+
+.til-mobile-menu{
+  display:flex; flex-direction:column; gap:.25rem;
+  max-height:0; overflow:hidden;
+  transition: max-height var(--dur-m) var(--ease);
+  border-top: 1px solid var(--line);
+}
+.til-mobile-menu.til-open{ max-height: 420px; }
+.til-mobile-menu a{
+  display:block; padding: 1rem clamp(1.25rem,4vw,2.5rem);
+  font-size: 1rem; font-weight:500; border-bottom: 1px solid var(--line-soft);
+}
+
+@media (min-width: 900px){
+  .til-nav-links{ display:flex; }
+  .til-scope .til-nav-cta{ display:inline-flex; }
+  .til-burger{ display:none; }
+  .til-mobile-menu{ display:none; }
+}
+
+/* ============ HERO ============ */
+.til-hero{
+  position: relative;
+  min-height: 92svh;
+  display:flex; align-items:flex-end;
+  overflow:hidden;
+  background: var(--ink);
+  color: var(--ivory);
+}
+.til-hero-media{ position:absolute; inset:0; z-index:0; }
+.til-hero-media video,
+.til-hero-media img{ width:100%; height:100%; object-fit:cover; }
+.til-hero-media::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(17,17,17,0.35) 0%, rgba(17,17,17,0.55) 55%, rgba(17,17,17,0.92) 100%);
+}
+.til-hero-media .til-hero-desktop{ display:none; }
+.til-hero-media .til-hero-mobile{ display:block; }
+@media (min-width: 900px){
+  .til-hero-media .til-hero-desktop{ display:block; }
+  .til-hero-media .til-hero-mobile{ display:none; }
+}
+.til-hero-inner{
+  position:relative; z-index:1;
+  width:100%;
+  padding-block: clamp(3rem, 10vw, 6rem);
+}
+.til-hero-content{ max-width: 760px; display:flex; flex-direction:column; gap:1.4rem; }
+.til-hero .til-eyebrow{ color: var(--gold-soft); }
+.til-hero h1{ color: var(--ivory); }
+.til-hero-sub{ font-size: clamp(1rem, 1.8vw, 1.3rem); color: rgba(250,249,246,0.82); max-width: 52ch; }
+.til-hero-signature{
+  display:flex; align-items:center; gap:.6rem; flex-wrap:wrap;
+  font-size: 0.78rem; letter-spacing:0.1em; text-transform:uppercase;
+  color: var(--gold-soft); font-weight:600;
+}
+.til-hero-signature svg{ width:14px; height:14px; }
+.til-hero-actions{ display:flex; flex-direction:column; gap:.75rem; align-items:flex-start; margin-top:.5rem; }
+.til-hero-actions .til-micro{ font-size:0.85rem; color: rgba(250,249,246,0.68); }
+
+/* ============ OBJECTIVE CHOICES ============ */
+.til-obj-grid{ display:grid; grid-template-columns: 1fr; gap:1rem; }
+@media (min-width:700px){ .til-obj-grid{ grid-template-columns: 1fr 1fr; } }
+.til-obj-card{
+  position:relative;
+  background: var(--white);
+  border:1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 1.6rem;
+  cursor:pointer;
+  text-align:left;
+  width:100%;
+  transition: border-color var(--dur-s) var(--ease), box-shadow var(--dur-s) var(--ease), transform var(--dur-s) var(--ease);
+}
+.til-obj-card:hover{ border-color: var(--gold); box-shadow: var(--shadow-1); transform: translateY(-2px); }
+.til-obj-card:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; }
+.til-obj-num{ font-family: var(--font-head); color: var(--gold); font-size:0.9rem; font-weight:600; }
+.til-obj-title{ font-family: var(--font-head); font-size:1.25rem; margin-block:.5rem .35rem; }
+.til-obj-answer{
+  font-size:0.92rem; color: var(--graphite);
+  max-height:0; opacity:0; overflow:hidden;
+  transition: max-height var(--dur-m) var(--ease), opacity var(--dur-m) var(--ease), margin var(--dur-m) var(--ease);
+}
+.til-obj-card[aria-expanded="true"] .til-obj-answer{ max-height:120px; opacity:1; margin-top:.35rem; }
+.til-obj-cta{
+  display:inline-flex; align-items:center; gap:.4rem;
+  margin-top:.9rem; font-size:0.82rem; font-weight:700;
+  letter-spacing:0.04em; text-transform:uppercase; color: var(--ink);
+  border-bottom:1px solid var(--gold); padding-bottom:2px;
+}
+.til-obj-help{ margin-top:2rem; text-align:center; }
+.til-obj-help p{ margin:.2rem 0; color: var(--graphite); }
+.til-obj-help strong{ display:block; font-family:var(--font-head); font-size:1.05rem; color:var(--ink); }
+
+/* ============ INSIGHT FLOW ============ */
+.til-flow{ display:flex; flex-direction:column; gap:0; }
+.til-flow-step{
+  display:grid; grid-template-columns: 64px 1fr; gap:1.1rem;
+  padding-block: 1.4rem;
+  border-top: 1px solid var(--line-soft);
+  opacity: .45;
+  transition: opacity var(--dur-l) var(--ease);
+}
+.til-flow-step:last-child{ border-bottom: 1px solid var(--line-soft); }
+.til-flow-step.til-in-view{ opacity: 1; }
+.til-flow-index{ font-family: var(--font-head); font-size:1.6rem; color: var(--gold); }
+.til-flow-title{ font-family: var(--font-head); font-size:1.2rem; margin-bottom:.3rem; }
+.til-flow-desc{ color: var(--graphite); max-width: 52ch; }
+
+/* ============ IDEA -> IMPACT ============ */
+.til-impact-chain{ display:flex; flex-direction:column; align-items:flex-start; gap:0; max-width: 420px; }
+.til-impact-node{ display:flex; align-items:center; gap:.9rem; padding-block:.55rem; }
+.til-impact-dot{ width:9px; height:9px; border-radius:50%; background: var(--line); flex:none; transition: background var(--dur-m) var(--ease); }
+.til-impact-node.til-in-view .til-impact-dot{ background: var(--gold); }
+.til-impact-label{ font-family: var(--font-head); font-size:1.05rem; color: var(--graphite); }
+.til-impact-node.til-in-view .til-impact-label{ color: var(--ink); }
+.til-impact-connector{ width:1px; height:26px; background: var(--line); margin-left: 4px; }
+
+/* ============ EXPERTISES ============ */
+.til-exp-grid{ display:grid; grid-template-columns:1fr; gap:1.1rem; }
+@media (min-width:760px){ .til-exp-grid{ grid-template-columns: 1fr 1fr; } }
+.til-exp-card{
+  display:block; position:relative;
+  background: var(--white);
+  border:1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 1.9rem;
+  transition: border-color var(--dur-s) var(--ease), box-shadow var(--dur-s) var(--ease), transform var(--dur-s) var(--ease);
+}
+.til-exp-card:hover{ border-color: var(--gold); box-shadow: var(--shadow-2); transform: translateY(-3px); }
+.til-exp-num{ color: var(--gold); font-weight:700; font-size:0.8rem; letter-spacing:0.08em; }
+.til-exp-title{ font-family: var(--font-head); font-size:1.35rem; margin-block:.6rem .4rem; }
+.til-exp-desc{ color: var(--graphite); margin-bottom:1.1rem; }
+
+/* ============ PROOF ============ */
+.til-proof-grid{ display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:760px){ .til-proof-grid{ grid-template-columns: repeat(4,1fr); } }
+.til-proof-slot{
+  border:1px dashed var(--line);
+  border-radius: var(--radius-m);
+  padding: 2rem 1.2rem;
+  text-align:center;
+  color: var(--graphite);
+  background: var(--surface);
+  min-height: 180px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem;
+}
+.til-proof-slot .til-tag{ font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--gold); font-weight:700; }
+
+/* ============ ABOUT / FOUNDER ============ */
+.til-about{ display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:center; }
+@media (min-width:900px){ .til-about{ grid-template-columns: 0.85fr 1.15fr; } }
+.til-about-media{ border-radius: var(--radius-l); overflow:hidden; background: var(--surface); aspect-ratio: 4/5; }
+.til-about-stats{ display:grid; grid-template-columns: repeat(2,1fr); gap:1.2rem; margin-top:1.6rem; }
+.til-stat-num{ font-family: var(--font-head); font-size:1.6rem; color: var(--gold); }
+.til-stat-label{ font-size:0.85rem; color: var(--graphite); }
+.til-about-question{
+  margin-top:1.6rem; padding: 1.1rem 1.3rem;
+  border-left: 2px solid var(--gold);
+  font-family: var(--font-head); font-size:1.1rem; color: var(--ink);
+  background: var(--surface); border-radius: 0 var(--radius-s) var(--radius-s) 0;
+}
+
+/* ============ WHY US ============ */
+.til-pillars{ display:grid; grid-template-columns:1fr; gap:0; }
+@media (min-width:760px){ .til-pillars{ grid-template-columns: repeat(5,1fr); gap:1px; background: var(--line); } }
+.til-pillar{ background: var(--ivory); padding: 1.6rem 1.3rem; }
+.til-ink .til-pillar{ background: var(--ink); }
+.til-pillar-title{ font-family: var(--font-head); color: var(--gold); font-size:1.05rem; margin-bottom:.5rem; }
+.til-pillar-text{ font-size:0.92rem; color: var(--graphite); }
+.til-ink .til-pillar-text{ color: rgba(250,249,246,0.75); }
+.til-conclusion{ margin-top: 2rem; font-family: var(--font-head); font-size:1.2rem; text-align:center; }
+
+/* ============ FORMATIONS ============ */
+.til-track-grid{ display:grid; grid-template-columns:1fr; gap:1.2rem; }
+@media (min-width:760px){ .til-track-grid{ grid-template-columns:1fr 1fr; } }
+.til-track-card{
+  border-radius: var(--radius-l);
+  padding: 2.1rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  display:flex; flex-direction:column; gap:1rem;
+}
+.til-track-card.til-track--dark{ background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+.til-track-card.til-track--dark h3{ color: var(--ivory); }
+.til-track-card.til-track--dark ul{ color: rgba(250,249,246,0.8); }
+.til-track-card ul{ display:flex; flex-direction:column; gap:.4rem; color: var(--graphite); font-size:0.94rem; }
+.til-track-card li::before{ content:"— "; color: var(--gold); }
+.til-track-note{ text-align:center; margin-top:1.5rem; color: var(--graphite); font-size:0.92rem; }
+
+/* ============ WHO FOR ============ */
+.til-who-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:1rem; }
+@media (min-width:760px){ .til-who-grid{ grid-template-columns: repeat(3,1fr); } }
+.til-who-card{ padding:1.4rem; border-radius: var(--radius-m); background: var(--white); border:1px solid var(--line); }
+.til-who-title{ font-family: var(--font-head); font-size:1.05rem; margin-bottom:.35rem; }
+.til-who-text{ font-size:0.88rem; color: var(--graphite); }
+
+/* ============ FAQ ============ */
+.til-faq-item{ border-top:1px solid var(--line); }
+.til-faq-item:last-child{ border-bottom:1px solid var(--line); }
+.til-faq-q{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding: 1.3rem 0; background:none; border:none; text-align:left; cursor:pointer;
+  font-family: var(--font-head); font-size:1.05rem; color: var(--ink);
+}
+.til-faq-q .til-plus{ flex:none; width:22px; height:22px; position:relative; }
+.til-faq-q .til-plus::before, .til-faq-q .til-plus::after{
+  content:""; position:absolute; background: var(--gold); top:50%; left:50%; transform:translate(-50%,-50%);
+}
+.til-faq-q .til-plus::before{ width:14px; height:1.5px; }
+.til-faq-q .til-plus::after{ width:1.5px; height:14px; transition: transform var(--dur-s) var(--ease); }
+.til-faq-item[data-open="true"] .til-plus::after{ transform: translate(-50%,-50%) rotate(90deg); opacity:0; }
+.til-faq-a{ max-height:0; overflow:hidden; transition: max-height var(--dur-m) var(--ease); }
+.til-faq-item[data-open="true"] .til-faq-a{ max-height: 260px; }
+.til-faq-a p{ padding-bottom:1.3rem; color: var(--graphite); max-width:65ch; }
+
+/* ============ FINAL CTA ============ */
+.til-final{ text-align:center; }
+.til-final .til-section-head{ margin-inline:auto; align-items:center; text-align:center; }
+.til-final-actions{ display:flex; flex-direction:column; gap:.85rem; align-items:center; margin-top:1.6rem; }
+
+/* ============ COMMUNITY ============ */
+.til-community{
+  border-radius: var(--radius-l);
+  padding: clamp(2rem, 6vw, 3.2rem);
+  background: linear-gradient(135deg, var(--surface), var(--ivory));
+  border: 1px solid var(--line);
+  display:flex; flex-direction:column; gap:1.2rem; align-items:flex-start;
+}
+@media (min-width:820px){ .til-community{ flex-direction:row; align-items:center; justify-content:space-between; } }
+.til-community-text{ max-width: 46ch; }
+
+/* ============ FOOTER ============ */
+.til-footer{ background: var(--ink); color: rgba(250,249,246,0.72); padding-block: 3rem 2rem; }
+.til-footer-grid{ display:grid; grid-template-columns:1fr; gap:2rem; margin-bottom:2rem; }
+@media (min-width:760px){ .til-footer-grid{ grid-template-columns: 1.4fr 1fr 1fr; } }
+.til-footer-brand{ font-family: var(--font-head); color: var(--ivory); font-size:1.2rem; margin-bottom:.6rem; }
+.til-footer h4{ color: var(--ivory); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:.8rem; }
+.til-footer ul{ display:flex; flex-direction:column; gap:.55rem; font-size:0.9rem; }
+.til-footer a:hover{ color: var(--gold-soft); }
+.til-footer-bottom{ border-top:1px solid rgba(250,249,246,0.14); padding-top:1.3rem; display:flex; flex-wrap:wrap; gap:.75rem; justify-content:space-between; font-size:0.78rem; color: rgba(250,249,246,0.5); }
+
+/* ============ STICKY MOBILE CTA ============ */
+.til-sticky-cta{
+  position: fixed; left:0; right:0; bottom:0; z-index:50;
+  padding: 0.7rem clamp(1rem,4vw,1.5rem);
+  padding-bottom: calc(0.7rem + env(safe-area-inset-bottom));
+  background: rgba(250,249,246,0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  transform: translateY(0);
+  transition: transform var(--dur-m) var(--ease);
+}
+.til-sticky-cta.til-hide{ transform: translateY(110%); }
+.til-sticky-cta .til-btn{ width:100%; }
+@media (min-width: 900px){ .til-sticky-cta{ display:none; } }
+
+/* Reveal-on-scroll (respects reduced motion) */
+.til-reveal{ opacity:0; transform: translateY(18px); transition: opacity var(--dur-l) var(--ease), transform var(--dur-l) var(--ease); }
+.til-reveal.til-in-view{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){
+  .til-reveal{ opacity:1; transform:none; transition:none; }
+  .til-flow-step{ opacity:1; }
+  .til-scope *{ scroll-behavior:auto !important; }
+}
+
+/* Skip link */
+.til-skip{
+  position:absolute; left:-999px; top:auto;
+  background: var(--ink); color:var(--ivory); padding:.8rem 1.2rem; border-radius: 0 0 8px 0; z-index:100;
+}
+.til-skip:focus{ left:0; top:0; }
+</style>
+
+<a class="til-skip" href="#til-main">Aller au contenu principal</a>
+
+<!-- ============ HEADER ============ -->
+<header class="til-header" id="til-header">
+  <div class="til-container til-nav">
+    <a href="#til-main" class="til-logo">THE INSIGHT LAB</a>
+
+    <nav class="til-nav-links" aria-label="Navigation principale">
+      <a href="#expertises">Expertises</a>
+      <a href="#insight-flow">Insight Flow</a>
+      <a href="#formations">Formations</a>
+      <a href="#a-propos">À propos</a>
+    </nav>
+
+    <div class="til-nav-right">
+      <div class="til-lang-switch" role="group" aria-label="Choix de la langue">
+        <button type="button" aria-current="true" data-til-event="language_switch" data-lang="fr">FR</button>
+        <span aria-hidden="true">/</span>
+        <!-- [INTÉGRATION À CONFIGURER DANS SYSTEME.IO] : lier vers la page /en/ équivalente -->
+        <button type="button" aria-current="false" data-til-event="language_switch" data-lang="en">EN</button>
+      </div>
+      <a class="til-btn til-btn--gold til-nav-cta"
+         href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
+         target="_blank" rel="noopener" data-til-event="hero_cta_click">
+        Contact
+      </a>
+      <button class="til-burger" id="til-burger" aria-expanded="false" aria-controls="til-mobile-menu" aria-label="Ouvrir le menu">
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <nav id="til-mobile-menu" class="til-mobile-menu" aria-label="Navigation mobile">
+    <a href="#expertises">Expertises</a>
+    <a href="#insight-flow">Insight Flow</a>
+    <a href="#formations">Formations</a>
+    <a href="#a-propos">À propos</a>
+    <a href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
+       target="_blank" rel="noopener" data-til-event="hero_cta_click">Contacter l'équipe</a>
+  </nav>
+</header>
+
+<main id="til-main">
+
+  <!-- ============ 01. HERO ============ -->
+  <section class="til-hero" aria-label="Présentation">
+    <div class="til-hero-media" aria-hidden="true">
+      <!--
+        IMAGE_HERO_DESKTOP (ou vidéo courte, silencieuse, <8s, <2Mo, poster obligatoire)
+        Rôle : composition cinématographique abstraite (lumière, matière, mouvement) — jamais littérale (pas de robot/cerveau/circuit).
+        Ratio recommandé : 16:9 large / dimensions 1920x1080 (AVIF/WebP, poids cible < 300 Ko)
+      -->
+      <picture class="til-hero-desktop">
+        <img src="IMAGE_HERO_DESKTOP.avif" alt="" role="presentation" />
+      </picture>
+      <!--
+        IMAGE_HERO_MOBILE
+        Rôle : version verticale dédiée du visuel hero (pas un simple recadrage)
+        Ratio recommandé : 4:5 / dimensions 1080x1350 (AVIF/WebP, poids cible < 150 Ko)
+      -->
+      <picture class="til-hero-mobile">
+        <img src="IMAGE_HERO_MOBILE.avif" alt="" role="presentation" />
+      </picture>
+    </div>
+
+    <div class="til-container til-hero-inner">
+      <div class="til-hero-content">
+        <span class="til-eyebrow">The Insight Lab</span>
+        <h1 class="til-h1">Transformez vos idées en résultats.</h1>
+        <p class="til-hero-sub">L'IA, la création et le digital au service de votre croissance.</p>
+        <p class="til-hero-signature">IDÉE <span aria-hidden="true">→</span> INSIGHT <span aria-hidden="true">→</span> RÉSULTAT</p>
+
+        <div class="til-hero-actions">
+          <a class="til-btn til-btn--gold"
+             href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
+             target="_blank" rel="noopener" data-til-event="hero_cta_click">
+            Contacter l'équipe InsightLab
+          </a>
+          <span class="til-micro">Parlez-nous simplement de ce que vous voulez construire.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02. QUEL RÉSULTAT ? ============ -->
+  <section class="til-section" id="objectif">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Votre point de départ</span>
+        <h2 class="til-h2">Quel résultat voulez-vous construire ?</h2>
+      </div>
+
+      <div class="til-obj-grid">
+        <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_create">
+          <span class="til-obj-num">01</span>
+          <span class="til-obj-title">Je veux créer du contenu pro.</span>
+          <span class="til-obj-answer">Des idées aux visuels, vidéos et contenus.</span>
+          <a class="til-obj-cta" href="/create" data-til-event="create_click">Voir ce que vous pouvez créer</a>
+        </button>
+
+        <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_learn">
+          <span class="til-obj-num">02</span>
+          <span class="til-obj-title">Je veux mieux utiliser l'IA.</span>
+          <span class="til-obj-answer">De l'outil à une véritable façon de travailler.</span>
+          <a class="til-obj-cta" href="#insight-flow">Voir comment ça fonctionne</a>
+        </button>
+
+        <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_develop">
+          <span class="til-obj-num">03</span>
+          <span class="til-obj-title">Je veux développer ma présence.</span>
+          <span class="til-obj-answer">Une présence digitale cohérente, active et reconnaissable.</span>
+          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20ma%20pr%C3%A9sence%20digitale." target="_blank" rel="noopener">Parler à l'équipe</a>
+        </button>
+
+        <button class="til-obj-card til-reveal" type="button" aria-expanded="false" data-til-toggle data-til-event="objective_convert">
+          <span class="til-obj-num">04</span>
+          <span class="til-obj-title">Je veux transformer l'attention en opportunités.</span>
+          <span class="til-obj-answer">Du premier contact au parcours client.</span>
+          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20parcours%20client%20et%20de%20ma%20strat%C3%A9gie%20de%20conversion." target="_blank" rel="noopener">Parler à l'équipe</a>
+        </button>
+      </div>
+
+      <div class="til-obj-help til-reveal">
+        <strong>Vous ne savez pas encore ?</strong>
+        <p>Expliquez-nous simplement votre objectif. Nous vous aiderons à trouver le bon point de départ.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03. INSIGHT FLOW ============ -->
+  <section class="til-surface" id="insight-flow" aria-labelledby="til-flow-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Notre méthode</span>
+        <h2 class="til-h2" id="til-flow-heading">L'IA devient puissante quand elle devient une façon de travailler.</h2>
+        <p class="til-lead">Insight Flow est la méthodologie propriétaire de The Insight Lab pour intégrer l'IA dans le travail réel — pas seulement dans un outil.</p>
+      </div>
+
+      <div class="til-flow" id="til-flow-list">
+        <div class="til-flow-step" data-til-flow-step>
+          <span class="til-flow-index">01</span>
+          <div><h3 class="til-flow-title">Comprendre</h3><p class="til-flow-desc">Clarifier avant de produire.</p></div>
+        </div>
+        <div class="til-flow-step" data-til-flow-step>
+          <span class="til-flow-index">02</span>
+          <div><h3 class="til-flow-title">Prompter</h3><p class="til-flow-desc">Donner à l'IA la bonne direction.</p></div>
+        </div>
+        <div class="til-flow-step" data-til-flow-step>
+          <span class="til-flow-index">03</span>
+          <div><h3 class="til-flow-title">Créer</h3><p class="til-flow-desc">Transformer l'idée en matière concrète.</p></div>
+        </div>
+        <div class="til-flow-step" data-til-flow-step>
+          <span class="til-flow-index">04</span>
+          <div><h3 class="til-flow-title">Structurer</h3><p class="til-flow-desc">Transformer l'action en workflow.</p></div>
+        </div>
+        <div class="til-flow-step" data-til-flow-step>
+          <span class="til-flow-index">05</span>
+          <div><h3 class="til-flow-title">Appliquer</h3><p class="til-flow-desc">Intégrer l'IA dans le réel.</p></div>
+        </div>
+        <div class="til-flow-step" data-til-flow-step>
+          <span class="til-flow-index">06</span>
+          <div><h3 class="til-flow-title">Optimiser</h3><p class="til-flow-desc">Améliorer ce qui fonctionne.</p></div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <a class="til-btn til-btn--ghost" href="#expertises" data-til-event="flow_step_view">Voir comment ça fonctionne</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04. IDÉE → IMPACT ============ -->
+  <section aria-labelledby="til-impact-heading">
+    <div class="til-container" style="display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:center;">
+      <div class="til-section-head til-reveal" style="margin-bottom:0;">
+        <span class="til-eyebrow">Le chemin</span>
+        <h2 class="til-h2" id="til-impact-heading">Une idée n'est que le début.</h2>
+        <p class="til-lead">Nous construisons le chemin qui transforme l'une en l'autre.</p>
+      </div>
+
+      <div class="til-impact-chain til-reveal" id="til-impact-chain" aria-hidden="false">
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Idée</span></div>
+        <div class="til-impact-connector"></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Insight</span></div>
+        <div class="til-impact-connector"></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Création</span></div>
+        <div class="til-impact-connector"></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Diffusion</span></div>
+        <div class="til-impact-connector"></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Audience</span></div>
+        <div class="til-impact-connector"></div>
+        <div class="til-impact-node" data-til-impact><span class="til-impact-dot"></span><span class="til-impact-label">Conversion</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05. EXPERTISES ============ -->
+  <section class="til-surface" id="expertises" aria-labelledby="til-exp-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Ce que nous construisons</span>
+        <h2 class="til-h2" id="til-exp-heading">Ce que nous pouvons construire avec vous.</h2>
+      </div>
+
+      <div class="til-exp-grid">
+        <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="creation">
+          <span class="til-exp-num">01 · CRÉATION</span>
+          <h3 class="til-exp-title">Donner une forme forte aux idées.</h3>
+          <p class="til-exp-desc">Visuels. Vidéos. Storytelling. Contenus créatifs avec l'IA.</p>
+          <a class="til-obj-cta" href="/create" data-til-event="create_click">Voir ce que vous pouvez créer</a>
+        </article>
+
+        <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="formation">
+          <span class="til-exp-num">02 · IA & FORMATION</span>
+          <h3 class="til-exp-title">Faire de l'IA une compétence.</h3>
+          <p class="til-exp-desc">Prompting. Outils. Workflows. Accompagnement.</p>
+          <a class="til-obj-cta" href="#insight-flow">Voir comment ça fonctionne</a>
+        </article>
+
+        <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="social">
+          <span class="til-exp-num">03 · SOCIAL MEDIA</span>
+          <h3 class="til-exp-title">Construire une présence qui compte.</h3>
+          <p class="til-exp-desc">Stratégie. Contenu. Animation. Communauté.</p>
+          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20ma%20pr%C3%A9sence%20digitale." target="_blank" rel="noopener">Parler à l'équipe</a>
+        </article>
+
+        <article class="til-exp-card til-reveal" data-til-event="expertise_open" data-til-label="funnel">
+          <span class="til-exp-num">04 · FUNNEL & CONVERSION</span>
+          <h3 class="til-exp-title">Créer le chemin vers l'action.</h3>
+          <p class="til-exp-desc">Landing pages. Parcours clients. Nurturing. Automatisation. Conversion.</p>
+          <a class="til-obj-cta" href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20parcours%20client%20et%20de%20ma%20strat%C3%A9gie%20de%20conversion." target="_blank" rel="noopener">Parler à l'équipe</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06. PREUVE SOCIALE ============ -->
+  <section aria-labelledby="til-proof-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Preuve</span>
+        <h2 class="til-h2" id="til-proof-heading">Voyez ce que cela donne dans le réel.</h2>
+      </div>
+
+      <div class="til-proof-grid til-reveal" data-til-event="proof_view">
+        <div class="til-proof-slot">
+          <span class="til-tag">Vidéo client</span>
+          <span>[VIDÉO CLIENT]</span>
+          <!-- Remplacer par un lecteur vidéo réel une fois le témoignage disponible. Ratio recommandé 9:16 ou 1:1. -->
+        </div>
+        <div class="til-proof-slot">
+          <span class="til-tag">Avant / après</span>
+          <span>[AVANT / APRÈS RÉEL]</span>
+          <!-- IMAGE_BEFORE_AFTER — ratio 1:1, comparaison réelle uniquement -->
+        </div>
+        <div class="til-proof-slot">
+          <span class="til-tag">Témoignage audio</span>
+          <span>[TÉMOIGNAGE AUDIO]</span>
+        </div>
+        <div class="til-proof-slot">
+          <span class="til-tag">Résultat mesurable</span>
+          <span>[RÉSULTAT MESURABLE]</span>
+          <!-- Ex : "+X % de leads" — uniquement si le chiffre est réel et vérifiable -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07. DERRIÈRE INSIGHT LAB ============ -->
+  <section class="til-ink" id="a-propos" aria-labelledby="til-about-heading" data-til-event="about_view">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Derrière Insight Lab</span>
+        <h2 class="til-h2" id="til-about-heading">Une vision. Une expérience. Une conviction.</h2>
+      </div>
+
+      <div class="til-about til-reveal">
+        <div class="til-about-media">
+          <!--
+            IMAGE_FOUNDER_PORTRAIT
+            Rôle : portrait éditorial de Donatien Gérard Tatchou
+            Ratio recommandé : 4:5 / dimensions 1000x1250 (AVIF/WebP)
+            ALT SEO recommandé : "Donatien Gérard Tatchou, fondateur de The Insight Lab"
+          -->
+          <img src="IMAGE_FOUNDER_PORTRAIT.avif" alt="Donatien Gérard Tatchou, fondateur de The Insight Lab" loading="lazy" />
+        </div>
+        <div>
+          <h3 class="til-h3" style="margin-bottom:.8rem;">Donatien Gérard Tatchou</h3>
+          <p class="til-lead" style="max-width:56ch;">
+            Entrepreneur et investisseur, spécialiste du développement des équipes.
+            Plus de 8 ans dans le marketing relationnel et l'entrepreneuriat, avec
+            l'accompagnement de plus de 18 000 personnes dans leur évolution professionnelle.
+            Passionné par l'intelligence artificielle depuis plus de 6 ans, il concentre
+            aujourd'hui son travail sur son application concrète au business.
+          </p>
+
+          <div class="til-about-stats">
+            <div><div class="til-stat-num">8+ ans</div><div class="til-stat-label">Marketing relationnel & entrepreneuriat</div></div>
+            <div><div class="til-stat-num">18 000+</div><div class="til-stat-label">Personnes accompagnées</div></div>
+            <div><div class="til-stat-num">6+ ans</div><div class="til-stat-label">D'intérêt pour l'IA</div></div>
+            <div><div class="til-stat-num">Aujourd'hui</div><div class="til-stat-label">L'IA appliquée au business</div></div>
+          </div>
+
+          <p class="til-about-question">« Comment rendre l'IA réellement utile au business ? »</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POURQUOI INSIGHT LAB ============ -->
+  <section class="til-ink" aria-labelledby="til-why-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Notre approche</span>
+        <h2 class="til-h2" id="til-why-heading">Pas simplement utiliser l'IA. L'intégrer intelligemment.</h2>
+      </div>
+
+      <div class="til-pillars til-reveal">
+        <div class="til-pillar"><div class="til-pillar-title">Stratégie</div><p class="til-pillar-text">Nous partons de votre objectif — pas de l'outil.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title">Intelligence</div><p class="til-pillar-text">Nous cherchons où l'IA peut réellement créer de la valeur.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title">Création</div><p class="til-pillar-text">Nous transformons les idées en expériences, contenus et actifs concrets.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title">Exécution</div><p class="til-pillar-text">Nous construisons les systèmes qui permettent de passer de l'idée à l'action.</p></div>
+        <div class="til-pillar"><div class="til-pillar-title">Conversion</div><p class="til-pillar-text">Nous relions l'attention à une véritable opportunité business.</p></div>
+      </div>
+
+      <p class="til-conclusion til-reveal">Une approche pensée pour relier les idées à leur exécution.</p>
+    </div>
+  </section>
+
+  <!-- ============ 08. FORMATIONS ============ -->
+  <section id="formations" aria-labelledby="til-tracks-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Formations</span>
+        <h2 class="til-h2" id="til-tracks-heading">Deux façons d'aller plus loin avec l'IA.</h2>
+      </div>
+
+      <div class="til-track-grid">
+        <article class="til-track-card til-reveal">
+          <h3 class="til-h3">Créez des visuels professionnels avec l'IA.</h3>
+          <ul>
+            <li>Prompting</li>
+            <li>Images professionnelles</li>
+            <li>Identité visuelle</li>
+            <li>Direction créative</li>
+          </ul>
+          <a class="til-btn til-btn--ghost" href="/create" data-til-event="create_click">Voir ce que vous pouvez créer</a>
+        </article>
+
+        <article class="til-track-card til-track--dark til-reveal">
+          <h3 class="til-h3">Transformez l'IA en moteur de création et de développement.</h3>
+          <ul>
+            <li>Vidéo</li>
+            <li>UGC</li>
+            <li>Publicités</li>
+            <li>Workflows</li>
+            <li>Business</li>
+          </ul>
+          <a class="til-btn til-btn--gold" href="/ai-business-magnet" data-til-event="magnet_click">Voir comment l'IA peut travailler pour vous</a>
+        </article>
+      </div>
+
+      <p class="til-track-note til-reveal">Deux parcours. Deux objectifs. Une même vision : rendre l'IA utile.</p>
+    </div>
+  </section>
+
+  <!-- ============ 09. POUR QUI ============ -->
+  <section class="til-surface" aria-labelledby="til-who-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Pour qui</span>
+        <h2 class="til-h2" id="til-who-heading">Pour ceux qui veulent aller plus loin.</h2>
+      </div>
+
+      <div class="til-who-grid til-reveal">
+        <div class="til-who-card"><div class="til-who-title">Entrepreneurs</div><p class="til-who-text">Transformer une vision en activité.</p></div>
+        <div class="til-who-card"><div class="til-who-title">Entreprises</div><p class="til-who-text">Intégrer l'IA dans les méthodes de travail.</p></div>
+        <div class="til-who-card"><div class="til-who-title">Créateurs</div><p class="til-who-text">Produire plus sans perdre leur identité.</p></div>
+        <div class="til-who-card"><div class="til-who-title">E-commerçants</div><p class="til-who-text">Créer, communiquer et convertir.</p></div>
+        <div class="til-who-card"><div class="til-who-title">Professionnels</div><p class="til-who-text">Développer leurs compétences et leur présence.</p></div>
+        <div class="til-who-card"><div class="til-who-title">Équipes</div><p class="til-who-text">Apprendre à travailler avec l'IA.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. FAQ ============ -->
+  <section aria-labelledby="til-faq-heading">
+    <div class="til-container" style="max-width:820px;">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Questions</span>
+        <h2 class="til-h2" id="til-faq-heading">Vous avez encore une question ?</h2>
+      </div>
+
+      <div class="til-reveal" id="til-faq-list">
+        <div class="til-faq-item" data-til-faq>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Que fait The Insight Lab ?<span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p>Nous aidons entrepreneurs, entreprises, créateurs, e-commerçants, professionnels et équipes à transformer leurs idées en résultats grâce à la stratégie, l'IA, la création, le digital et la conversion.</p></div>
+        </div>
+        <div class="til-faq-item" data-til-faq>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Qu'est-ce qu'Insight Flow ?<span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p>C'est notre méthodologie propriétaire pour intégrer l'IA dans le travail réel, en six étapes : comprendre, prompter, créer, structurer, appliquer, optimiser.</p></div>
+        </div>
+        <div class="til-faq-item" data-til-faq>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Faut-il déjà connaître l'IA ?<span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p>Non. Nous partons de votre objectif et vous accompagnons étape par étape, que vous découvriez l'IA ou que vous cherchiez à structurer une pratique déjà en place.</p></div>
+        </div>
+        <div class="til-faq-item" data-til-faq>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Quelle différence entre CREATE et AI Business Magnet ?<span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p>CREATE se concentre sur les visuels professionnels avec l'IA. AI Business Magnet va plus loin : vidéo, UGC, publicités, workflows et développement business. Ce sont deux parcours indépendants.</p></div>
+        </div>
+        <div class="til-faq-item" data-til-faq>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Pouvez-vous accompagner une entreprise ?<span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p>Oui. Nous travaillons avec des entrepreneurs individuels comme avec des entreprises et des équipes qui souhaitent intégrer l'IA dans leurs méthodes de travail.</p></div>
+        </div>
+        <div class="til-faq-item" data-til-faq>
+          <button class="til-faq-q" aria-expanded="false" data-til-event="faq_open">Comment commencer ?<span class="til-plus" aria-hidden="true"></span></button>
+          <div class="til-faq-a"><p>En contactant l'équipe sur WhatsApp pour nous expliquer simplement votre objectif. Nous vous aidons à identifier le point de départ le plus adapté.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11. FINAL CTA ============ -->
+  <section class="til-ink til-final" aria-labelledby="til-final-heading">
+    <div class="til-container">
+      <div class="til-section-head til-reveal">
+        <span class="til-eyebrow">Prochaine étape</span>
+        <h2 class="til-h2" id="til-final-heading">Une idée mérite d'aller quelque part.</h2>
+        <p class="til-lead" style="margin-inline:auto;">Expliquez-nous ce que vous voulez construire.</p>
+      </div>
+
+      <div class="til-final-actions til-reveal">
+        <a class="til-btn til-btn--gold"
+           href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
+           target="_blank" rel="noopener" data-til-event="hero_cta_click">
+          Contacter l'équipe InsightLab
+        </a>
+        <span class="til-micro">Bonjour Insight Lab, je souhaite discuter de mon projet.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. COMMUNAUTÉ ============ -->
+  <section aria-labelledby="til-community-heading">
+    <div class="til-container">
+      <div class="til-community til-reveal">
+        <div class="til-community-text">
+          <span class="til-eyebrow">Communauté</span>
+          <h2 class="til-h3" id="til-community-heading" style="margin-top:.6rem;">Rejoindre la communauté Insight Lab</h2>
+          <p class="til-lead" style="margin-top:.5rem;">Échanger, apprendre et découvrir ce que l'IA rend possible.</p>
+        </div>
+        <a class="til-btn til-btn--ghost"
+           href="https://chat.whatsapp.com/F1SOvYfFiM6LiJkUje5jfr?s=cl&p=a&mlu=4&ilr=4"
+           target="_blank" rel="noopener" data-til-event="community_click">
+          Rejoindre la communauté Insight Lab
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 13. FOOTER ============ -->
+<footer class="til-footer">
+  <div class="til-container">
+    <div class="til-footer-grid">
+      <div>
+        <div class="til-footer-brand">THE INSIGHT LAB</div>
+        <p style="max-width:34ch;">Des idées à l'impact. L'IA, la création et le digital au service de votre croissance.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#expertises">Expertises</a></li>
+          <li><a href="#insight-flow">Insight Flow</a></li>
+          <li><a href="#formations">Formations</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet." target="_blank" rel="noopener">WhatsApp — Contacter l'équipe</a></li>
+          <li><a href="https://chat.whatsapp.com/F1SOvYfFiM6LiJkUje5jfr?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener">Communauté WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="til-footer-bottom">
+      <span>© <span id="til-year"></span> The Insight Lab. Tous droits réservés.</span>
+      <span>Des idées à l'impact.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ STICKY MOBILE CTA ============ -->
+<div class="til-sticky-cta" id="til-sticky-cta">
+  <a class="til-btn til-btn--gold"
+     href="https://wa.me/971556957882?text=Bonjour%20Insight%20Lab%2C%20je%20souhaite%20discuter%20de%20mon%20projet."
+     target="_blank" rel="noopener" data-til-event="hero_cta_click">
+    Contacter l'équipe InsightLab
+  </a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Tracking (CRO events) ----------
+     [INTÉGRATION À CONFIGURER DANS SYSTEME.IO] :
+     brancher trackEvent() sur Google Tag Manager / Meta Pixel / Systeme.io tracking
+     en poussant vers window.dataLayer (GTM) si disponible. */
+  function trackEvent(name, detail){
+    try{
+      if (window.dataLayer && typeof window.dataLayer.push === 'function'){
+        window.dataLayer.push(Object.assign({ event: name }, detail || {}));
+      }
+    }catch(e){}
+  }
+  root.addEventListener('click', function(e){
+    var el = e.target.closest('[data-til-event]');
+    if (!el) return;
+    trackEvent(el.getAttribute('data-til-event'), { label: el.getAttribute('data-til-label') || el.textContent.trim() });
+  });
+
+  /* ---------- Header scroll state ---------- */
+  var header = root.getElementById('til-header');
+  function onScroll(){
+    if (!header) return;
+    header.classList.toggle('til-is-scrolled', window.scrollY > 8);
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  var burger = root.getElementById('til-burger');
+  var mobileMenu = root.getElementById('til-mobile-menu');
+  if (burger && mobileMenu){
+    burger.addEventListener('click', function(){
+      var open = mobileMenu.classList.toggle('til-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobileMenu.addEventListener('click', function(e){
+      if (e.target.closest('a')){
+        mobileMenu.classList.remove('til-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ---------- Objective cards (tap-to-reveal) ---------- */
+  root.querySelectorAll('[data-til-toggle]').forEach(function(card){
+    card.addEventListener('click', function(e){
+      if (e.target.closest('a')) return; // let inner CTA link navigate normally
+      var expanded = card.getAttribute('aria-expanded') === 'true';
+      card.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    });
+  });
+
+  /* ---------- FAQ accordion ---------- */
+  root.querySelectorAll('[data-til-faq]').forEach(function(item){
+    var btn = item.querySelector('.til-faq-q');
+    btn.addEventListener('click', function(){
+      var isOpen = item.getAttribute('data-open') === 'true';
+      root.querySelectorAll('[data-til-faq]').forEach(function(other){
+        other.removeAttribute('data-open');
+        other.querySelector('.til-faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen){
+        item.setAttribute('data-open', 'true');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  var revealTargets = root.querySelectorAll('.til-reveal, [data-til-flow-step], [data-til-impact]');
+  if ('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('til-in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    revealTargets.forEach(function(t){ io.observe(t); });
+  } else {
+    revealTargets.forEach(function(t){ t.classList.add('til-in-view'); });
+  }
+
+  /* ---------- Sticky mobile CTA: hide near footer / final CTA ---------- */
+  var sticky = root.getElementById('til-sticky-cta');
+  var finalCta = root.querySelector('.til-final');
+  if (sticky && finalCta && 'IntersectionObserver' in window){
+    var stickyIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        sticky.classList.toggle('til-hide', entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    stickyIo.observe(finalCta);
+  }
+
+  /* ---------- Footer year ---------- */
+  var yearEl = root.getElementById('til-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+</script>
+</div>
