@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Insight Lab — Des idées à l'impact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Variables ===== */
+:root {
+  --color-bg: #F8F4EC;
+  --color-bg-tint: #F1EADA;
+  --color-dark: #1E1B16;
+  --color-text: #3A342B;
+  --color-muted: #7A7364;
+  --color-gold: #C9992F;
+  --color-gold-dark: #B0801F;
+  --color-white: #FFFFFF;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(30, 27, 22, 0.08);
+  --container-width: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; margin: 0; padding: 0; }
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.text-gold { color: var(--color-gold); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+  color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(201, 153, 47, 0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(201, 153, 47, 0.45); }
+.btn-sm { padding: 10px 20px; font-size: 0.85rem; }
+.arrow { transition: transform 0.2s ease; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.section { padding: 90px 0; }
+.section--tinted { background: var(--color-bg-tint); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--color-dark);
+  margin: 0 0 14px;
+}
+.section-title.center { text-align: center; }
+.section-subtitle { color: var(--color-muted); margin: 0 0 50px; }
+.section-subtitle.center { text-align: center; }
+.section-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+/* ===== Header ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248, 244, 236, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(30,27,22,0.06);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.logo-mark {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  color: var(--color-dark);
+  border: 1.5px solid var(--color-gold);
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+.main-nav a { color: var(--color-text); transition: color 0.2s ease; }
+.main-nav a:hover { color: var(--color-gold-dark); }
+.lang-switch { font-size: 0.85rem; color: var(--color-muted); }
+.lang-switch a.active { color: var(--color-dark); font-weight: 600; }
+.lang-switch--mobile { display: none; margin-right: 12px; }
+.nav-cta { padding: 10px 22px; }
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
+  position: relative;
+  z-index: 300;
+}
+.burger span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-dark);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.is-open span:nth-child(2) { opacity: 0; }
+.burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== Hero ===== */
+.hero { padding: 60px 0 40px; position: relative; overflow: hidden; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 30px;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-gold-dark);
+  margin-bottom: 16px;
+}
+.hero-copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  line-height: 1.12;
+  color: var(--color-dark);
+  margin: 0 0 20px;
+}
+.hero-desc { color: var(--color-muted); font-size: 1.05rem; margin-bottom: 30px; max-width: 420px; }
+.hero-tags {
+  margin-top: 26px;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.hero-tags span { color: var(--color-gold); margin: 0 6px; }
+.hero-visual img {
+  border-radius: var(--radius);
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/5;
+}
+.hero-side-text {
+  writing-mode: vertical-rl;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-muted);
+  align-self: center;
+  max-width: 20px;
+}
+
+/* ===== Cards grids ===== */
+.cards-grid { display: grid; gap: 24px; margin-top: 10px; }
+.cards-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.cards-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+.result-card, .expertise-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.result-card:hover, .expertise-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(30,27,22,0.14);
+}
+.result-card img, .expertise-card img { height: 150px; width: 100%; object-fit: cover; }
+.result-card-footer, .expertise-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  gap: 10px;
+}
+.result-card-footer h3, .expertise-card-footer h3 {
+  font-size: 1rem;
+  margin: 0 0 4px;
+  color: var(--color-dark);
+}
+.result-card-footer p, .expertise-card-footer p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+.circle-arrow {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.result-card:hover .circle-arrow, .expertise-card:hover .circle-arrow {
+  background: var(--color-gold);
+  color: var(--color-white);
+}
+
+/* ===== Insight Flow ===== */
+.flow-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.flow-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+.flow-step p { margin: 0; font-weight: 600; color: var(--color-dark); font-size: 0.92rem; }
+.flow-arrow { color: var(--color-gold); font-size: 1.3rem; }
+
+/* ===== Idee -> Impact ===== */
+.idee-impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.idee-impact-copy h2 { line-height: 1.15; }
+.idee-impact-copy p { color: var(--color-muted); margin-top: 12px; }
+.idee-impact-image img { border-radius: var(--radius); aspect-ratio: 4/3; object-fit: cover; }
+.idee-impact-list { display: flex; flex-direction: column; gap: 18px; }
+.idee-impact-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+.idee-impact-list .check {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ===== Formation cards ===== */
+.formation-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.formation-card img { height: 220px; width: 100%; object-fit: cover; }
+.formation-card-body { padding: 26px; }
+.formation-card-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin: 0 0 8px;
+  color: var(--color-dark);
+}
+.formation-card-body p { color: var(--color-muted); margin: 0 0 20px; }
+
+/* ===== Testimonials ===== */
+.carousel-nav { display: flex; gap: 10px; }
+.carousel-nav button {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold);
+  background: transparent;
+  color: var(--color-gold-dark);
+  font-size: 1rem;
+}
+.carousel-nav button:hover { background: var(--color-gold); color: var(--color-white); }
+
+.testimonials-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 960px) {
+  .testimonials-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .testimonials-track .testimonial-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+}
+.testimonial-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 30px 26px;
+  position: relative;
+}
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--color-gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 10px;
+}
+.testimonial-card p { color: var(--color-text); margin-bottom: 22px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-author img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+.testimonial-author strong { display: block; font-size: 0.9rem; color: var(--color-dark); }
+.testimonial-author span { font-size: 0.78rem; color: var(--color-muted); }
+
+/* ===== Founder ===== */
+.founder-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 50px;
+  align-items: center;
+}
+.founder-image img { border-radius: var(--radius); aspect-ratio: 3/4; object-fit: cover; }
+.quote-mark--inline { display: inline-block; margin: 0 0 6px; font-size: 2.2rem; }
+.founder-quote { font-size: 1.2rem; color: var(--color-dark); line-height: 1.5; margin: 0 0 26px; }
+.founder-signature { font-family: 'Playfair Display', cursive; font-size: 1.8rem; color: var(--color-gold-dark); margin: 0; }
+.founder-name { font-weight: 600; color: var(--color-dark); margin: 6px 0 0; }
+.founder-role { color: var(--color-muted); font-size: 0.85rem; margin: 2px 0 0; }
+
+/* ===== Pour qui ===== */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+.audience-item {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  padding: 26px 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+.audience-item:hover { transform: translateY(-4px); }
+.audience-item span { font-size: 1.6rem; display: block; margin-bottom: 10px; }
+.audience-item p { margin: 0; font-size: 0.85rem; font-weight: 500; color: var(--color-dark); }
+
+/* ===== FAQ ===== */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+.accordion-item {
+  border-bottom: 1px solid rgba(30,27,22,0.1);
+}
+.accordion-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--color-dark);
+  text-align: left;
+}
+.accordion-trigger .plus { color: var(--color-gold-dark); font-size: 1.2rem; transition: transform 0.25s ease; }
+.accordion-item.is-open .plus { transform: rotate(45deg); }
+.accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-panel p { margin: 0 0 20px; color: var(--color-muted); font-size: 0.92rem; }
+
+.faq-community {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.faq-community img { height: 180px; width: 100%; object-fit: cover; }
+.faq-community-body { padding: 26px; }
+.faq-community-body p { color: var(--color-dark); font-weight: 500; margin: 0 0 20px; }
+
+/* ===== CTA final ===== */
+.cta-final {
+  background: linear-gradient(rgba(20,17,12,0.75), rgba(20,17,12,0.85)),
+              url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAwIiBoZWlnaHQ9IjcwMCIgdmlld0JveD0iMCAwIDE2MDAgNzAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMzZDJmMTQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNmI0ZjFlIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdHRlcm4gaWQ9ImRvdHMiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIxLjIiIGZpbGw9IiNDOTk5MkYiIG9wYWNpdHk9IjAuMTgiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ1cmwoI2RvdHMpIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MiUiIGZvbnQtc2l6ZT0iMTU0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7im7DvuI88L3RleHQ+Cjwvc3ZnPg==') center/cover no-repeat;
+  padding: 100px 0;
+  text-align: center;
+  color: var(--color-white);
+}
+.cta-final-inner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin: 0 0 16px;
+}
+.cta-final-inner p { color: rgba(255,255,255,0.8); margin: 0 0 30px; }
+
+/* ===== Footer ===== */
+.site-footer { background: var(--color-dark); color: rgba(255,255,255,0.85); padding: 50px 0 20px; }
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand p { color: rgba(255,255,255,0.55); font-size: 0.85rem; margin-top: 12px; }
+.logo-mark--footer { border-color: var(--color-gold); color: var(--color-white); }
+.footer-nav { display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.9rem; }
+.footer-nav a:hover { color: var(--color-gold); }
+.footer-socials { display: flex; gap: 14px; }
+.footer-socials a {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+}
+.footer-socials a:hover { background: var(--color-gold); border-color: var(--color-gold); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+.footer-legal { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* ===================================================== */
+/* ===================== RESPONSIVE ===================== */
+/* ===================================================== */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-side-text { display: none; }
+  .idee-impact-grid { grid-template-columns: 1fr; text-align: center; }
+  .idee-impact-list { align-items: center; }
+  .founder-grid { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .cards-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .audience-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .main-nav {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: 78%;
+    max-width: 320px;
+    background: var(--color-bg);
+    opacity: 0;
+    z-index: 200;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 26px;
+    padding: 100px 32px 32px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+    pointer-events: none;
+  }
+  .main-nav.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .main-nav.is-open { transform: translateX(0); }
+  .main-nav .lang-switch { display: none; }
+  .nav-cta { width: 100%; justify-content: center; }
+  .lang-switch--mobile { display: block; }
+  .burger { display: flex; }
+
+  .section { padding: 60px 0; }
+  .cards-grid--4, .cards-grid--2 { grid-template-columns: 1fr; }
+  .audience-grid { grid-template-columns: repeat(2, 1fr); }
+  .flow-steps { gap: 14px; }
+  .flow-icon { width: 58px; height: 58px; font-size: 1.3rem; }
+  .flow-arrow { display: none; }
+  .section-title-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-inner { flex-direction: column; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">THE<br>INSIGHT<br>LAB</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#expertises">Expertises</a>
+      <a href="#insight-flow">Insight Flow</a>
+      <a href="#formations">Formations</a>
+      <a href="#apropos">À propos</a>
+      <div class="lang-switch"><a href="#" class="active">FR</a> | <a href="#">EN</a></div>
+      <a href="#contact" class="btn btn-primary nav-cta">Contact</a>
+    </nav>
+
+    <div class="lang-switch lang-switch--mobile"><a href="#" class="active">FR</a> | <a href="#">EN</a></div>
+    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 HERO -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">L'intelligence au service des ambitions</p>
+        <h1>Transformez vos idées en <span class="text-gold">résultats.</span></h1>
+        <p class="hero-desc">L'IA, la création et le digital au service de votre croissance.</p>
+        <a href="#expertises" class="btn btn-primary">Découvrir nos solutions <span class="arrow">→</span></a>
+        <p class="hero-tags">Humain <span>×</span> IA <span>×</span> Création <span>×</span> Croissance</p>
+      </div>
+      <div class="hero-visual">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iMTEyNSIgdmlld0JveD0iMCAwIDkwMCAxMTI1Ij4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyYjIwMTMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNWI0NTIyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdHRlcm4gaWQ9ImRvdHMiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIxLjIiIGZpbGw9IiNDOTk5MkYiIG9wYWNpdHk9IjAuMTgiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSIxMTI1IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSIxMTI1IiBmaWxsPSJ1cmwoI2RvdHMpIi8+CiAgPHRleHQgeD0iNTAlIiB5PSI1MiUiIGZvbnQtc2l6ZT0iMTk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIj7inKg8L3RleHQ+Cjwvc3ZnPg==" alt="Portrait futuriste, intelligence artificielle et croissance" loading="eager">
+      </div>
+      <p class="hero-side-text">Un monde de possibilités en mieux</p>
+    </div>
+  </section>
+
+  <!-- 02 QUEL RESULTAT -->
+  <section class="section" id="resultat">
+    <div class="container">
+      <h2 class="section-title center">Quel résultat voulez-vous construire ?</h2>
+      <div class="cards-grid cards-grid--4">
+        <a class="result-card" href="#expertises">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWUxYjE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhMzEyNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+SoTwvdGV4dD4KPC9zdmc+" alt="Créer">
+          <div class="result-card-footer">
+            <div>
+              <h3>Créer</h3>
+              <p>Un contenu qui marque</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </a>
+        <a class="result-card" href="#formations">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+OkzwvdGV4dD4KPC9zdmc+" alt="Apprendre">
+          <div class="result-card-footer">
+            <div>
+              <h3>Apprendre</h3>
+              <p>À maîtriser l'IA</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </a>
+        <a class="result-card" href="#expertises">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2QyZjE0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzZiNGYxZSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+TiDwvdGV4dD4KPC9zdmc+" alt="Développer">
+          <div class="result-card-footer">
+            <div>
+              <h3>Développer</h3>
+              <p>Votre présence</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </a>
+        <a class="result-card" href="#expertises">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWUxYjE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhMzEyNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+knTwvdGV4dD4KPC9zdmc+" alt="Convertir">
+          <div class="result-card-footer">
+            <div>
+              <h3>Convertir</h3>
+              <p>Vos opportunités</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 INSIGHT FLOW -->
+  <section class="section section--tinted" id="insight-flow">
+    <div class="container">
+      <h2 class="section-title center">Insight Flow</h2>
+      <p class="section-subtitle center">Une méthode claire pour passer de l'idée au résultat.</p>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <span class="flow-icon">🔍</span>
+          <p>Comprendre</p>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">🗂️</span>
+          <p>Structurer</p>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">💡</span>
+          <p>Créer</p>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">⚙️</span>
+          <p>Appliquer</p>
+        </div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-step">
+          <span class="flow-icon">📈</span>
+          <p>Optimiser</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 IDEE A IMPACT -->
+  <section class="section" id="idee-impact">
+    <div class="container idee-impact-grid">
+      <div class="idee-impact-copy">
+        <h2 class="section-title">De l'idée <br>à <span class="text-gold">l'impact.</span></h2>
+        <p>Des solutions concrètes pour des ambitions réelles.</p>
+      </div>
+      <div class="idee-impact-image">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjc1IiB2aWV3Qm94PSIwIDAgOTAwIDY3NSI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MDAiIGhlaWdodD0iNjc1IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI2NzUiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxNDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfj5nvuI88L3RleHQ+Cjwvc3ZnPg==" alt="Homme regardant la ville, vision et impact">
+      </div>
+      <ul class="idee-impact-list">
+        <li><span class="check">✓</span> Plus de visibilité</li>
+        <li><span class="check">✓</span> Plus d'opportunités</li>
+        <li><span class="check">✓</span> Plus d'efficacité</li>
+        <li><span class="check">✓</span> Plus de croissance</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 05 NOS EXPERTISES -->
+  <section class="section section--tinted" id="expertises">
+    <div class="container">
+      <h2 class="section-title">Nos expertises</h2>
+      <div class="cards-grid cards-grid--4">
+        <div class="expertise-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWUxYjE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhMzEyNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+OrDwvdGV4dD4KPC9zdmc+" alt="Création de contenu">
+          <div class="expertise-card-footer">
+            <div>
+              <h3>Création de contenu</h3>
+              <p>Visuels, vidéos, storytelling</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2QyZjE0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzZiNGYxZSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+kljwvdGV4dD4KPC9zdmc+" alt="IA & Automatisation">
+          <div class="expertise-card-footer">
+            <div>
+              <h3>IA &amp; Automatisation</h3>
+              <p>Outils, workflows, productivité</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+4pmf77iPPC90ZXh0Pgo8L3N2Zz4=" alt="Stratégie digitale">
+          <div class="expertise-card-footer">
+            <div>
+              <h3>Stratégie digitale</h3>
+              <p>Positionnement, audience</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </div>
+        <div class="expertise-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNTAwIDQwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWUxYjE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhMzEyNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+SuzwvdGV4dD4KPC9zdmc+" alt="Tunnel & Conversion">
+          <div class="expertise-card-footer">
+            <div>
+              <h3>Tunnel &amp; Conversion</h3>
+              <p>Landing pages, automatisation</p>
+            </div>
+            <span class="circle-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 TEMOIGNAGES -->
+  <section class="section" id="temoignages">
+    <div class="container">
+      <div class="section-title-row">
+        <h2 class="section-title">Ils nous font confiance</h2>
+        <div class="carousel-nav">
+          <button id="carouselPrev" aria-label="Témoignage précédent">←</button>
+          <button id="carouselNext" aria-label="Témoignage suivant">→</button>
+        </div>
+      </div>
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p>Un accompagnement professionnel et une vraie transformation.</p>
+          <div class="testimonial-author">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiB2aWV3Qm94PSIwIDAgNzAwIDkzMyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI5MzMiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxNTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkaQ8L3RleHQ+Cjwvc3ZnPg==" alt="Participant">
+            <div>
+              <strong>Participant</strong>
+              <span>Formation IA</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p>Des outils simples et puissants. Je recommande sans hésitation.</p>
+          <div class="testimonial-author">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiB2aWV3Qm94PSIwIDAgNzAwIDkzMyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI5MzMiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxNTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkaQ8L3RleHQ+Cjwvc3ZnPg==" alt="Entrepreneur">
+            <div>
+              <strong>Entrepreneur</strong>
+              <span>Secteur services</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="quote-mark">&ldquo;</span>
+          <p>Une approche pratique et orientée résultats.</p>
+          <div class="testimonial-author">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiB2aWV3Qm94PSIwIDAgNzAwIDkzMyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI5MzMiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxNTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkaQ8L3RleHQ+Cjwvc3ZnPg==" alt="Freelance">
+            <div>
+              <strong>Freelance</strong>
+              <span>Création de contenu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DERRIERE INSIGHT LAB -->
+  <section class="section section--tinted" id="apropos">
+    <div class="container founder-grid">
+      <div class="founder-image">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiB2aWV3Qm94PSIwIDAgNzAwIDkzMyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iOTMzIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI5MzMiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxNTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkaQ8L3RleHQ+Cjwvc3ZnPg==" alt="Donatien Gérard Tatchou, fondateur">
+      </div>
+      <div class="founder-copy">
+        <h2 class="section-title">Derrière Insight Lab</h2>
+        <span class="quote-mark quote-mark--inline">&ldquo;</span>
+        <p class="founder-quote">Je crois en un monde où chaque personne peut transformer ses idées en opportunités, grâce à l'IA et au digital.</p>
+        <p class="founder-signature">Donatien</p>
+        <p class="founder-name">Donatien Gérard TATCHOU</p>
+        <p class="founder-role">Fondateur de The Insight Lab</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 FORMATIONS -->
+  <section class="section" id="formations">
+    <div class="container">
+      <h2 class="section-title">Nos formations</h2>
+      <div class="cards-grid cards-grid--2">
+        <div class="formation-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNzAwIDUwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2QyZjE0Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzZiNGYxZSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfk7c8L3RleHQ+Cjwvc3ZnPg==" alt="Formation CREATE">
+          <div class="formation-card-body">
+            <h3>CREATE</h3>
+            <p>Maîtrisez la création de contenu avec l'IA.</p>
+            <a href="#contact" class="btn btn-primary btn-sm">En savoir plus <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <div class="formation-card">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNzAwIDUwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMWUxYjE2Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzNhMzEyNiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkrs8L3RleHQ+Cjwvc3ZnPg==" alt="Formation AI Business Magnet">
+          <div class="formation-card-body">
+            <h3>AI Business Magnet</h3>
+            <p>Faites de l'IA un levier de croissance.</p>
+            <a href="#contact" class="btn btn-primary btn-sm">En savoir plus <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 POUR QUI -->
+  <section class="section section--tinted" id="pour-qui">
+    <div class="container">
+      <h2 class="section-title">Pour qui ?</h2>
+      <div class="audience-grid">
+        <div class="audience-item"><span>👤</span><p>Entrepreneurs</p></div>
+        <div class="audience-item"><span>🏢</span><p>Entreprises</p></div>
+        <div class="audience-item"><span>🎯</span><p>Créateurs de contenu</p></div>
+        <div class="audience-item"><span>💼</span><p>Freelances</p></div>
+        <div class="audience-item"><span>🎓</span><p>Étudiants</p></div>
+        <div class="audience-item"><span>👥</span><p>Professionnels</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 FAQ -->
+  <section class="section" id="faq">
+    <div class="container faq-grid">
+      <div class="faq-list">
+        <h2 class="section-title">Questions fréquentes</h2>
+        <div class="accordion" id="accordion">
+          <div class="accordion-item">
+            <button class="accordion-trigger">À qui s'adressent vos formations ? <span class="plus">+</span></button>
+            <div class="accordion-panel"><p>Nos formations s'adressent à toute personne — entrepreneur, salarié, étudiant ou freelance — souhaitant utiliser l'IA et le digital pour atteindre ses objectifs.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">Faut-il avoir des compétences techniques ? <span class="plus">+</span></button>
+            <div class="accordion-panel"><p>Non, nos programmes sont conçus pour être accessibles à tous les niveaux, avec un accompagnement pas à pas.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">Comment se déroule l'accompagnement ? <span class="plus">+</span></button>
+            <div class="accordion-panel"><p>L'accompagnement combine sessions individuelles, ressources pratiques et suivi personnalisé selon vos objectifs.</p></div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">Quels sont les moyens de paiement ? <span class="plus">+</span></button>
+            <div class="accordion-panel"><p>Nous acceptons les virements bancaires, cartes bancaires et paiements en plusieurs fois selon la formule choisie.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-community">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNzAwIDUwMCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmIyMDEzIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzViNDUyMiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxwYXR0ZXJuIGlkPSJkb3RzIiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSIyIiBjeT0iMiIgcj0iMS4yIiBmaWxsPSIjQzk5OTJGIiBvcGFjaXR5PSIwLjE4Ii8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNTAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHJlY3Qgd2lkdGg9IjcwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9InVybCgjZG90cykiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUyJSIgZm9udC1zaXplPSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPvCfkaU8L3RleHQ+Cjwvc3ZnPg==" alt="Communauté engagée">
+        <div class="faq-community-body">
+          <p>Rejoignez une communauté de personnes qui passent à l'action.</p>
+          <a href="#contact" class="btn btn-primary">Rejoindre la communauté <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 CTA FINAL -->
+  <section class="cta-final" id="contact">
+    <div class="container cta-final-inner">
+      <h2>Prêt à transformer vos idées en résultats ?</h2>
+      <p>Discutons de votre projet et trouvons la meilleure solution ensemble.</p>
+      <a href="mailto:contact@theinsightlab.com" class="btn btn-primary">Contacter l'équipe <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-mark logo-mark--footer">THE<br>INSIGHT<br>LAB</span>
+      <p>Des idées à l'impact.</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#expertises">Expertises</a>
+      <a href="#insight-flow">Insight Flow</a>
+      <a href="#formations">Formations</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer-socials">
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="Instagram">◎</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; 2024 The Insight Lab. Tous droits réservés.</p>
+    <div class="footer-legal">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">Conditions d'utilisation</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  /* ===== Mobile nav toggle ===== */
+  const burger = document.getElementById('burgerBtn');
+  const nav = document.getElementById('mainNav');
+
+  if (burger && nav) {
+    burger.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('is-open');
+      burger.classList.toggle('is-open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ===== FAQ accordion ===== */
+  document.querySelectorAll('.accordion-item').forEach((item) => {
+    const trigger = item.querySelector('.accordion-trigger');
+    const panel = item.querySelector('.accordion-panel');
+
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      document.querySelectorAll('.accordion-item').forEach((other) => {
+        other.classList.remove('is-open');
+        other.querySelector('.accordion-panel').style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ===== Testimonials carousel ===== */
+  const track = document.getElementById('testimonialsTrack');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+
+  if (track && prevBtn && nextBtn) {
+    const cards = Array.from(track.children);
+    let index = 0;
+
+    const update = () => {
+      const cardWidth = cards[0].getBoundingClientRect().width + 24;
+      track.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+    };
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % cards.length;
+      update();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + cards.length) % cards.length;
+      update();
+    });
+  }
+});
+
+</script>
+</body>
+</html>
