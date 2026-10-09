@@ -1,0 +1,17 @@
+{
+  "assets": [
+    {
+      "id": "gold_particles_v01",
+      "kind": "png-sequence",
+      "path": "public/generated/particles/####.png",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 426,
+      "startCue": "particlesIn",
+      "alpha": true,
+      "seed": 88170,
+      "source": "scripts/gold_particles.py"
+    }
+  ]
+}

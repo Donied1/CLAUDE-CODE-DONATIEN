@@ -1,0 +1,20 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationSeconds": 32,
+  "safe": {"top": 200, "bottom": 300, "left": 80, "right": 80},
+  "seed": 88170,
+  "palette": {
+    "bg": "#07060A",
+    "panel": "#121016",
+    "ink": "#F4EFE4",
+    "muted": "#9C968A",
+    "gold": "#C9A84C",
+    "goldLight": "#F1D88A",
+    "goldDeep": "#A97C28",
+    "cream": "#E8E3D8",
+    "alert": "#E25C4B"
+  },
+  "creativeDirection": "Luxe/Cinematique noir & or (palette et logo du site). Motif: poussiere d'or. Geste signature: le chaos de particules (outils sans methode) s'aligne en un fil d'or (la methode) sous la phrase du site."
+}

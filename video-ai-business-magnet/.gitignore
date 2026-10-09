@@ -1,0 +1,5 @@
+node_modules/
+out/stills/
+out/proxy.mp4
+out/*.log
+public/generated/
