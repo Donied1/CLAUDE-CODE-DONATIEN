@@ -95,10 +95,10 @@ export const Tools: React.FC = () => {
         );
       })}
       <div style={{...center, top: 720}}>
-        <Reveal at={c.noMethod + 0.4}>
+        <Reveal at={c.noMethodLine1 - 0.1}>
           <div style={{fontFamily: SERIF, fontStyle: 'italic', fontWeight: 700, color: P.gold, fontSize: fit(no1, CONTENT_W, SERIF, 700, 112)}}>{no1}</div>
         </Reveal>
-        <Reveal at={c.noMethod + 0.85}>
+        <Reveal at={c.noMethodLine2 - 0.1}>
           <div style={{fontFamily: SANS, fontWeight: 800, color: P.ink, fontSize: fit(no2, CONTENT_W, SANS, 800, 80), letterSpacing: '-0.02em'}}>{no2}</div>
         </Reveal>
       </div>
@@ -184,7 +184,7 @@ export const Quote: React.FC = () => {
 };
 
 // ---------- 5. L'OFFRE ----------
-const DOMAINS = ['les entrepreneurs', 'les freelances', 'les créateurs de contenu', 'les entreprises', 'les étudiants', 'votre métier'];
+const DOMAINS = ['les entrepreneurs', 'les freelances', 'les créateurs de contenu', 'votre domaine'];
 export const Offer: React.FC = () => {
   const t = useG();
   const out = ramp(t, c.benefitsIn - 0.3, 0.3);
@@ -232,7 +232,7 @@ export const Benefits: React.FC = () => {
         <Reveal at={c.benefitsIn}><div style={{fontFamily: SANS, fontWeight: 800, fontSize: fit(head, CONTENT_W, SANS, 800, 80), color: P.ink, letterSpacing: '-0.03em'}}>{head}</div></Reveal>
       </div>
       {ITEMS.map((it, i) => {
-        const at = c.benefitsIn + 0.3 + i * c.benefitStep;
+        const at = [c.benefit0, c.benefit1, c.benefit2][i] - 0.1;
         const p = ramp(t, at, 0.5);
         const check = ramp(t, at + 0.1, 0.4);
         return (
@@ -248,7 +248,7 @@ export const Benefits: React.FC = () => {
       })}
       <div style={{position: 'absolute', left: design.safe.left, width: CONTENT_W, top: 1180, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22}}>
         {PERKS.map((pk, i) => {
-          const p = ramp(t, c.benefitsIn + 2.1 + i * 0.25, 0.4);
+          const p = ramp(t, c.perksIn + i * c.perkStep, 0.4);
           return (
             <div key={pk} style={{fontFamily: SANS, fontWeight: 600, fontSize: 38, color: P.gold, padding: '14px 34px', borderRadius: 40,
               border: '2px solid rgba(201,168,76,0.5)', background: 'rgba(201,168,76,0.07)', opacity: p, transform: `translateY(${(1 - p) * 30}px)`}}>{pk}</div>

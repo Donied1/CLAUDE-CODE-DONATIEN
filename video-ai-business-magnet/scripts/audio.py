@@ -194,20 +194,37 @@ S(ping(mtof(81), 1.6), c["quoteLine2"], 0.7)
 S(whoosh(0.6, True), c["offerIn"] - 0.3, 1.0)
 S(impact(), c["offerTitle"], 0.85)
 S(chime(78), c["offerTitle"] + 0.1, 0.6)
-for i in range(6):
+for i in range(4):
     S(tick(3200), c["offerDomain"] + i * c["domainStep"], 0.6)
 
 S(whoosh(0.6, True), c["benefitsIn"] - 0.3, 0.9)
+for k in ("benefit0", "benefit1", "benefit2"):
+    S(pop(), c[k] - 0.1, 0.8)
 for i in range(3):
-    S(pop(), c["benefitsIn"] + 0.3 + i * c["benefitStep"], 0.8)
+    S(tick(2600), c["perksIn"] + i * c["perkStep"], 0.5)
 
 S(whoosh(0.8, False), c["cta"] - 0.35, 1.0)
 S(impact(), c["ctaLogo"], 0.9)
 S(chime(74), c["ctaLogo"] + 0.15, 1.0)
 S(pop(), c["ctaUrl"], 0.8)
 
+# ---------- VOIX OFF + DUCKING ----------
+vo_path = ROOT / "public/audio/vo/voiceover.wav"
+voice = np.zeros(N)
+if vo_path.exists():
+    with wave.open(str(vo_path)) as w:
+        v = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float64) / 32768
+    voice[: min(N, len(v))] = v[:N]
+    win = int(0.08 * SR)
+    env = np.convolve(np.abs(voice), np.ones(win) / win, mode="same")
+    duck = 1 - 0.6 * np.clip(env / (env.max() * 0.25 + 1e-9), 0, 1)
+    duck = np.convolve(duck, np.ones(int(0.15 * SR)) / int(0.15 * SR), mode="same")
+    music *= duck
+    sfx *= 1 - 0.35 * (1 - duck)  # les effets restent presents mais laissent passer la voix
+
 # ---------- MIX ----------
-mix = music * 0.45 + sfx * 0.6
+voice *= 0.9 / (np.abs(voice).max() + 1e-9)
+mix = music * 0.3 + sfx * 0.42 + voice[None, :] * 1.0
 mix /= np.abs(mix).max() / 0.9
 fade = np.ones(N)
 fo = int(1.5 * SR)

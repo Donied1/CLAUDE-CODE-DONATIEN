@@ -2,8 +2,13 @@
   "width": 1080,
   "height": 1920,
   "fps": 30,
-  "durationSeconds": 32,
-  "safe": {"top": 200, "bottom": 300, "left": 80, "right": 80},
+  "durationSeconds": 36,
+  "safe": {
+    "top": 200,
+    "bottom": 300,
+    "left": 80,
+    "right": 80
+  },
   "seed": 88170,
   "palette": {
     "bg": "#07060A",
