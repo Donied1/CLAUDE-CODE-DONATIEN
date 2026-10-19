@@ -22,10 +22,13 @@ const impulse = (f: number, at: number, amp = 0.012) => (f >= at ? amp * Math.ex
 // ---------- typographie cinétique ----------
 type WordsProps = {
   lines: string[]; at: number[]; out?: number; size: number; serif?: boolean; weight?: number;
-  gold?: string[]; color?: string; lh?: number; align?: "center" | "left"; stagger?: number;
+  gold?: string[]; color?: string; lh?: number; align?: "center" | "left"; stagger?: number; sweep?: number;
 };
-const Words: React.FC<WordsProps> = ({ lines, at, out, size, serif = true, weight = 700, gold = [], color = theme.ink, lh = 1.04, align = "center", stagger = 1.65 }) => {
+const Words: React.FC<WordsProps> = ({ lines, at, out, size, serif = true, weight = 700, gold = [], color = theme.ink, lh = 1.04, align = "center", stagger = 1.65, sweep }) => {
   const f = useCurrentFrame();
+  // reflet doré qui traverse les mots en or (appliqué aux lettres seulement)
+  const sx = sweep === undefined ? -100 : interpolate(f, [sweep, sweep + 26], [-30, 130], { ...clamp, easing: Easing.inOut(Easing.quad) });
+  const shine = { backgroundImage: `linear-gradient(105deg, ${theme.primaryDeep} ${sx - 22}%, #F3D891 ${sx}%, ${theme.primaryDeep} ${sx + 22}%)`, WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" } as React.CSSProperties;
   const ex = out === undefined ? 0 : interpolate(f, [out, out + 10], [0, 1], eSmooth);
   if (ex >= 1) return null;
   return (
@@ -45,6 +48,7 @@ const Words: React.FC<WordsProps> = ({ lines, at, out, size, serif = true, weigh
                     fontFamily: serif ? SERIF : SANS, fontSize: size, lineHeight: lh, fontWeight: isGold && serif ? 600 : weight,
                     fontStyle: isGold && serif ? "italic" : "normal", color: isGold ? theme.primaryDeep : color,
                     letterSpacing: serif ? -0.5 : -0.3, fontVariantNumeric: "lining-nums",
+                    ...(isGold && sweep !== undefined ? shine : {}),
                   }}>{w}</span>
                 </span>
               );
@@ -354,14 +358,6 @@ const Phone: React.FC = () => {
   );
 };
 
-// balayage lumineux doré sur « résultat concret »
-const Sweep: React.FC<{ at: number }> = ({ at }) => {
-  const f = useCurrentFrame();
-  const x = interpolate(f, [at, at + 26], [-40, 140], { ...clamp, easing: Easing.inOut(Easing.quad) });
-  if (f < at || f > at + 28) return null;
-  return <div style={{ position: "absolute", inset: 0, background: `linear-gradient(105deg, transparent ${x - 18}%, rgba(255,236,190,0.95) ${x}%, transparent ${x + 18}%)`, mixBlendMode: "soft-light", pointerEvents: "none" }} />;
-};
-
 const Logo: React.FC = () => {
   const f = useCurrentFrame(); const { fps } = useVideoConfig();
   const a = s(38.2);
@@ -418,7 +414,7 @@ export const Reel01: React.FC = () => {
         <Phone />
 
         {/* 1 */}
-        <Headline top={560}><Words lines={["Tu n'as pas besoin", "d'une nouvelle IA."]} at={[s(0.31), s(0.31) + 6]} out={s(3.15)} size={118} /></Headline>
+        <Headline top={560}><Words lines={["Tu n’as pas besoin", "d’une nouvelle IA."]} at={[s(0.31), s(0.31) + 6]} out={s(3.15)} size={118} /></Headline>
         {/* 2 */}
         <Headline top={290}><Words lines={["Tu dois apprendre", "à mieux utiliser", "celle que tu as déjà."]} at={[s(3.38), s(3.38) + 7, s(6.19)]} out={s(7.6)} size={110} gold={["déjà"]} /></Headline>
         {/* 3 */}
@@ -438,12 +434,11 @@ export const Reel01: React.FC = () => {
         <Headline top={300}><Words lines={["Améliore ta méthode."]} at={[s(26.5)]} out={s(28.8)} size={92} /></Headline>
         <Headline top={410}><Words lines={["Mesure le résultat."]} at={[s(27.4)]} out={s(28.8)} size={92} /></Headline>
         {/* 9 */}
-        <Headline top={290}><Words lines={["Ce n'est pas celui", "qui utilise le plus d'IA", "qui avance le plus vite."]} at={[s(29.03), s(29.98), s(32.75)]} out={s(33.3)} size={86} /></Headline>
+        <Headline top={290}><Words lines={["Ce n’est pas celui", "qui utilise le plus d’IA", "qui avance le plus vite."]} at={[s(29.03), s(29.98), s(32.75)]} out={s(33.3)} size={86} /></Headline>
         {/* 10 */}
         <div style={{ position: "absolute", left: 60, right: 60, top: 300, height: 330, overflow: "hidden" }}>
-          <Words lines={["C'est celui qui sait", "transformer l'IA"]} at={[s(33.59), s(35.2)]} out={s(38.0)} size={76} />
-          <Words lines={["en résultat concret."]} at={[s(36.5)]} out={s(38.0)} size={92} gold={["résultat", "concret"]} />
-          <Sweep at={s(36.75)} />
+          <Words lines={["C’est celui qui sait", "transformer l’IA"]} at={[s(33.59), s(35.2)]} out={s(38.0)} size={76} />
+          <Words lines={["en résultat concret."]} at={[s(36.5)]} out={s(38.0)} size={92} gold={["résultat", "concret"]} sweep={s(36.75)} />
         </div>
         <Logo />
       </AbsoluteFill>
