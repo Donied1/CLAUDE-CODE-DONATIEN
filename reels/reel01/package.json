@@ -1,0 +1,25 @@
+{
+  "name": "insight-lab-motion-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Studio Remotion premium aux couleurs de The Insight Lab (adapté de claude-motion-studio, MIT).",
+  "scripts": {
+    "still": "remotion still",
+    "render": "remotion render",
+    "sfx": "node src/tools/sfx.mjs",
+    "removebg": "node src/tools/removebg.mjs"
+  },
+  "dependencies": {
+    "@remotion/shapes": "4.0.350",
+    "@remotion/transitions": "4.0.350",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.350",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.350",
+    "@types/react": "19.0.0",
+    "typescript": "5.7.3"
+  }
+}
